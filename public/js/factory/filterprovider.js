@@ -11,7 +11,8 @@ angular.module('testApp').filterProvider.register('filterarray', function() {
 			  dummy = items.filter(function(val,indx){
 						for(var i in filteredArray){
 							if(
-							   val[key].selectedResult.toLocaleLowerCase().indexOf(filteredArray[i].toLocaleLowerCase()) > -1
+								   val[key].selectedResult.toString().toLocaleLowerCase().indexOf(filteredArray[i].toLocaleLowerCase()) > -1
+									  
 							 )
 								return true;
 						}
