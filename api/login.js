@@ -114,25 +114,24 @@
 		});
  };
  exports.findbyID = function(req, res) {
-	    var empid = req.body.empid;
+	    var nempid = Number(req.body.empid);
+		var sempid = req.body.empid.toString();
 		var pwd = req.body.pwd;
-		console.log(empid)
-		console.log(pwd)
 		db.users.findOne({
-			'empid.selectedResult':	{ $in : [ empid.toString(), empid ] } 
+			'empid.selectedResult':	{ $in : [ sempid, nempid ] } 
 		}, function(err, doc) {
 		   if(doc == null){
 			   	returnMessage.status=false;
-	        	returnMessage.message ="Dear  " +empid+ ",it seems you haven't registered yet,Please register"
+	        	returnMessage.message ="Dear  " +nempid+ ",it seems you haven't registered yet,Please register"
 				res.jsonp(returnMessage);
 		   }
 		   else{
-					if(doc !=null  && doc.hasOwnProperty('pwd') && 
+		    		if(doc !=null  && doc.hasOwnProperty('pwd') && 
 							doc.status.selectedResult=="Active" &&
 							doc.role.selectedResult!="NoRole" &&
 							doc.pwd.selectedResult == pwd && 
 							doc.hasOwnProperty('empid') && 
-							doc.empid.selectedResult == empid){
+							doc.empid.selectedResult.toString() == nempid.toString()){
 						
 						delete doc.pwd;
 						doc.path={
@@ -146,7 +145,7 @@
 					}
 					else{
 						returnMessage.status=false;
-			        	returnMessage.message ="Dear  " +empid + ", your credentials seems invalid, or NO Access please contact Admin"
+			        	returnMessage.message ="Dear  " +nempid + ", your credentials seems invalid, or NO Access please contact Admin"
 						res.jsonp(returnMessage);
 					}
 				}
