@@ -125,7 +125,7 @@ angular.module('testApp').controllerProvider.register('testcasescontrlr',
 					selectedResult:"",
 					placeHolder:"No:tst cases",
 					disabled:true,
-					type:mobCheckFactory.mobileCheck() ? "number" :"text"
+					type:mobCheckFactory.mobileCheck() ? "number" :"number"
 				},
 				testCases:[]
 			},

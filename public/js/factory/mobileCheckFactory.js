@@ -18,7 +18,7 @@ angular.module('testApp').provide.service('mobCheckFactory', function($rootScope
 				                  'nokia','opera mini','windows mobile','windows phone','iemobile']; 
 				    for (var i in mobile)
 				    	if (navigator.userAgent.toLowerCase().indexOf(mobile[i].toLowerCase()) > 0) 
-				    		return true;
+				    		return false;
 				    return false;//default
 				},
 		 };

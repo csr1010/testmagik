@@ -11,7 +11,7 @@ angular.module('testApp').controllerProvider.register('logregController', functi
 		empid:{
 			placeHolder:"EMP ID",
     		selectedResult:"",
-    		type:mobCheckFactory.mobileCheck() ? "number" :"text"
+    		type:mobCheckFactory.mobileCheck() ? "number" :"number"
 		},
 		pwd:{
 			placeHolder:"password",
@@ -58,7 +58,7 @@ angular.module('testApp').controllerProvider.register('logregController', functi
 					},
 					empid : {
 						type : mobCheckFactory.mobileCheck() ? "number"
-								: "text",
+								: "number",
 						selectedResult : "",
 						placeHolder : "EMP ID",
 					},
@@ -72,7 +72,7 @@ angular.module('testApp').controllerProvider.register('logregController', functi
 					},
 					contact:{
 					type : mobCheckFactory.mobileCheck() ? "number"
-								: "text",
+								: "number",
 						selectedResult : "",
 						placeHolder : "CONTACT NO:",
 					},

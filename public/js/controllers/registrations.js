@@ -72,7 +72,7 @@ angular.module('testApp').controllerProvider.register('registrationController',
 					},
 					empid : {
 						type : mobCheckFactory.mobileCheck() ? "number"
-								: "text",
+								: "number",
 						selectedResult : "",
 						placeHolder : "EMP ID",
 					},
@@ -86,7 +86,7 @@ angular.module('testApp').controllerProvider.register('registrationController',
 					},
 					contact:{
 							type : mobCheckFactory.mobileCheck() ? "number"
-								: "text",
+								: "number",
 						selectedResult : "",
 						placeHolder : "CONTACT NO:",
 					},
