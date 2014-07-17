@@ -1,0 +1,66 @@
+   	 <!-- <alert ng-show="alert.msg != ''" type="alert.type" close="alert.msg='' ">{{alert.msg}}</alert> -->
+  		   <header>
+  		   <div class="dashes">
+  		     
+ <button ng-click="gototestcases()" style="font-size: x-large;background: rgba(255, 0, 0, 0.02);;color: #FDFCFC;">
+  		      <i class="icon icon-media-play rotleft" ></i>
+  		   </button>
+  		   </div>
+  		   <abbr title="Register Employess here remove or transfer , activate or de activate them etc..">
+		             <i style="margin-top: 1%;">{{regHead.firstLetter}}</i><span class="headerspan">{{regHead.title}}</span>
+		   </abbr>
+		   <button ng-click ="gotoTestCases()"class='center buttonAligner'> <i  style="background: #3EE2C1;"class="glyphicon glyphicon-ok footericon" > </i></button>
+		   <button ng-click ="gotoTestCases()"class='center buttonAligner'> <i class="glyphicon glyphicon-plus footericon" > </i></button>
+  		   </header>
+  		   <footer>
+  		       <div class=" NFlistsubflexes " >
+				      <div class="halfflex">
+				     	 <input   ng-change="filterModel.todate = (filterModel.todate<filterModel.fromdate) ? null : filterModel.todate"  placeholder = "from date"class="textaligneraside1" type= text datepicker-popup="shortDate" show-button-bar="false" show-weeks="false" ng-model="filterModel.fromdate"  max="filterModel.today">
+				     	 <input  placeholder = "to date"class="textaligneraside1" type= text datepicker-popup="shortDate" show-button-bar="false" show-weeks="false" ng-model="filterModel.todate" min="filterModel.fromdate" max="filterModel.today">
+				       </div>
+				      <div class="halfflex"> 
+<button ng-click ="gotoTestCases()"class='center buttonAligner'> <i class="glyphicon glyphicon-filter footericon" > </i></button>
+				      </div>
+		  	</div>
+  		   </footer>
+  		   <section ng-style="{height:regListheight}" style="overflow-y: auto;">
+				<ul class="nonfilgridsholder">
+					<a style="text-decoration:none;"ng-repeat ="i in regBody.regBoxmodel | orderBy:'-runCount'"  ui-sref="master.ModifyProject" class=" col-xs-12 col-sm-6 ritsidelist">
+						<span class="col-xs-4  "> <span>RUN </span><span class=runNumbers>{{i.runCount}}</span></span>
+						 <div style="margin-top: 3%;"class="btn-group btn-group-lg col-xs-4  ">
+						      <button type=button 
+						      class="btn btn-{{i.status.list[0].cls}}"
+						      ng-click="i.status.list[0].cls='success';
+						               i.status.list[1].cls='default';
+						               i.status.selectedResult = i.status.list[0].txt;
+						               ">
+						      </button>
+						      <button type=button
+						      class="btn btn-{{i.status.list[1].cls}}"
+						      ng-click="i.status.list[1].cls='danger';
+						               i.status.list[0].cls='default';
+						               i.status.selectedResult = i.status.list[1].txt;
+						              ">
+						      </button>
+						 </div>
+						 <div class="col-xs-4  ipClass2 "><input type= number class="ipClass "></div>
+						 <div class="rundesc" ng-repeat ="j in i.description">
+						 {{j.desc}}
+						 </div> 
+						<!--   <input
+						  class="rundesc" 
+						  type= text 
+						  name = "skils " 
+						  list="runslist" >
+							<datalist id="runslist">
+							<select >
+							<option value=""></option>
+								<option ng-repeat ="subobj in runDescs" value="{{subobj}}">
+							</select>
+							</datalist> -->
+					</a>
+				</ul> 		   
+  		   </section>
+  		    <div>
+ 
+</div>

@@ -1,0 +1,90 @@
+   	 <alert ng-show="alert.msg != ''" type="alert.type" close="alert.msg='' ">{{alert.msg}}</alert>
+  		   <header>
+  		   <div class="dashes">
+  		  <button ng-click="gotoprjcts()" style="font-size: x-large;background: rgba(255, 0, 0, 0.02);;color: #FDFCFC;">
+  		      <i class="icon icon-media-play rotleft" ></i>
+  		   </button>
+  		   </div>
+  		   <abbr title="Register Employess here remove or transfer , activate or de activate them etc..">
+		             <span class="headerspan">{{testcsHead.title}}</span>
+		   </abbr>
+		   
+		   <button ng-show="testCasedetails.buttons.done" ng-click ="saveTestcases()"class='center buttonAligner'> 
+		   		<i  style="background: #3EE2C1;"class="glyphicon glyphicon-ok footericon" > </i>
+		   </button>
+		   
+		   <button ng-show="testCasedetails.buttons.edit"ng-click ="editTestcases()"class='center buttonAligner'> 
+		   		<i class="glyphicon glyphicon-pencil footericon" > </i>
+		   </button>
+		   
+		   <button ng-show="testCasedetails.buttons.add" ng-click ="addTestCases()"class='center buttonAligner'> 
+		      <i class="glyphicon glyphicon-plus footericon" > </i>
+		   </button>
+		   
+  		   </header>
+  		  <!--  ng-style="{height:regListheight}" style="overflow-y: auto;" -->
+  		   <section ng-style="{height:regListheight}" style="overflow-y: auto;">
+  		    <form name="testcaseForm">
+				<ul class="nonfilgridsholder" ng-init = "testCasedetails['form'] = testcaseForm">
+					<a class="ritsidelist col-xs-12">
+						<span class="col-xs-9" >
+							<input class="ipClass " 
+							   type="text" 
+							   	required
+							   	name="project name"
+							   	ng-disabled="regBody.testcsBoxModel.name.disabled || !testCasedetails.projectdetails" 
+						        ng-pattern = "/^([\d\w\s/])*$/"
+						        ng-model="regBody.testcsBoxModel.name.selectedResult"
+							 	placeholder="{{regBody.testcsBoxModel.name.placeHolder}}">
+							 
+						 </span>
+						<span class="col-xs-3" style=" font-size: medium;"  >
+						 <input class="ipClass" 
+						    type="{{regDetails.empid.type}}"   
+					       	name="test case count"
+					       	maxlength=3
+							ng-disabled="regBody.testcsBoxModel.count.disabled" 
+					        ng-pattern = "/^[\d]+$/"
+					        ng-model="regBody.testcsBoxModel.count.selectedResult"
+					        placeholder="{{regBody.testcsBoxModel.count.placeHolder}}"
+						 >
+						</span> 
+					</a>
+				</ul> 
+				
+				<ul class="nonfilgridsholder">
+				<div class="ritsidelist col-xs-12" ng-show="regBody.testcsBoxModel.testCases.length == 0 ">No testcases available</div>
+					<a ng-repeat ="i in regBody.testcsBoxModel.testCases"    class="ritsidelist col-xs-12 col-sm-6">
+						<label  ng-show = "testCasedetails.readMode" style="text-transform: capitalize;float: left;font-size: larger;"ng-style="{color:i.color}">
+							{{i.selectedResult.substr(0,1)}}
+						</label>
+						<span ng-show = "testCasedetails.readMode"  ui-sref="master.RunsList"class="rilistdesc">
+						 	{{i.selectedResult.substr(1,i.selectedResult.length)}}
+						 </span>
+						 <span ng-show = "!testCasedetails.readMode" class="rilistdesc">
+						  <input class="ipClass" 
+						    type="text"   
+					       	name="test case name"
+					       	required
+					       	ng-hide="i.disabled"
+							ng-disabled="i.disabled" 
+					        ng-pattern = "/^([\d\w\s/])*$/"
+					        ng-model="i.selectedResult"
+					        placeholder="enter test Case"
+						 >
+						 </span>
+						<button ng-show = "testCasedetails.buttons.nav" style="z-index:99999;margin-top:2%;border: none;" class="btn btn-default pull-right"><i class="icon icon-chevron-right"   ></i></button>
+						
+						<button  ng-show = "testCasedetails.buttons.del" style="z-index:99999;padding:13px;color:#F3CACA;border: 1px solid #F3CACA;" 
+							class="btn btn-default pull-right"
+							ng-click="deletetestCase(i)">
+							<i class="icon icon-cross"></i>
+						</button>
+					</a>
+				</ul> 	
+			 </form>	   
+  		   </section>
+  		   
+  		    <div>
+ 
+</div>
