@@ -1,12 +1,12 @@
 angular.module('testApp').controllerProvider.register('registrationController',
-		function($scope, $http, mobCheckFactory, currencyFactory,formvalidationFactory,$rootScope) {
+		function($scope, $http, mobCheckFactory,formvalidationFactory,$rootScope) {
 			$scope.alert = {
 				type : '',
 				msg : ''
 			};
 			$scope.opensettings=function(){
 				
-				if(window.innerWidth <=900){
+				if(window.innerWidth <=1230){
 					$(".leftnavclass").css({
 						"-webkit-transform":" translateX(0px) translateY(0px) translateZ(0px) ",
 						"-moz-transform":" translateX(0px) translateY(0px) translateZ(0px) ",
@@ -17,10 +17,18 @@ angular.module('testApp').controllerProvider.register('registrationController',
 						"display":"block"
 					});
 				}
-				/*setTimeout(function(){
-					document.getElementsByClassName('leftnavclass')[0].style.webkitTransform = 'translateX(0px) translateZ(0px)  rotateY(0deg) rotateZ(0deg) ';
-				},200);*/
-				
+				};
+				$scope.provideuserSessionData = function(i){
+					var wantd =  JSON.parse(sessionStorage.getItem('currentUser')) ?
+							JSON.parse(sessionStorage.getItem('currentUser')).data[i].selectedResult : false
+							if(!wantd){
+								 $rootScope.$apply(function()
+				       	    	          {
+									 			$rootScope.logoff();
+				       	    	          });
+							}else{
+								return wantd;
+							}
 				};
 			$rootScope.usrMngmntListheight = (window.innerHeight - 50 - 60 - 60 - 10) + "px";
 			$scope.totEmpList = [];
@@ -91,7 +99,7 @@ angular.module('testApp').controllerProvider.register('registrationController',
 						placeHolder : "CONTACT NO:",
 					},
 					Account : {
-						selectedResult :JSON.parse(sessionStorage.getItem('currentUser')).data.Account.selectedResult,
+						selectedResult :$scope.provideuserSessionData("Account"),
 						placeHolder : "Account",
 						disabled : true
 					},
@@ -227,21 +235,7 @@ angular.module('testApp').controllerProvider.register('registrationController',
 			            });
 			};
 			 (function(){
-				 if(
-						 $.trim(sessionStorage.getItem("currentUser")) != ""
-					  || JSON.parse(sessionStorage.getItem('currentUser')).data.role.selectedResult=="Admin"
-						 
-					 ) 
-				 {
-					 
-					 var Account = JSON.parse(sessionStorage.getItem('currentUser')).data.Account.selectedResult;
+					 var Account = $scope.provideuserSessionData("Account");
 					 $scope.fetchREGBox(Account);
-				 }
-				 else{
-					 sessionStorage.setItem("accountInfo","");
-						sessionStorage.setItem("currentUser","");
-						sessionStorage.setItem("currentWeekRange","");
-					 $location.path("/");
-				 }
 			 })();
 		});

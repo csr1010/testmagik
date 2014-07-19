@@ -15,14 +15,12 @@ angular.module('testApp').provide.service('currencyFactory', function($rootScope
 						    });	
 				 },
 				 getavailblecountries:function(){
-					 var account = JSON.parse(sessionStorage.getItem('currentUser')).data.accounts || "default";
 					 $http({
 				            url: '/currency/'+account,
 				            method: "GET",
 				        }).success(function (result, status, headers, config) {
 				        	if(result.status)
 				        	{
-				        		sessionStorage.setItem("accountInfo",JSON.stringify(result));
 				        		currencyJSONP.worklocations = angular.copy(result.data.worklocations);
 				        		currencyJSONP.currencyType = angular.copy(result.data.currencytypes);
 				        		currencyJSONP.currencyType.forEach(function(val,indx){

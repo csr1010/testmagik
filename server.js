@@ -3,7 +3,7 @@ var http  = require('http');
 var app      = express();
 GLOBAL.mongojs = require('mongojs');
 //GLOBAL.db = mongojs('mongodb://csr:root@ds063307.mongolab.com:63307/xammagik',['userstests','examslisttests','questionstests','answertests' ]);
-GLOBAL.db = mongojs('mongodb://chetan10:chetan10@ds045099.mongolab.com:45099/testrun',['users','projects','accounts']);
+GLOBAL.db = mongojs('mongodb://chetan10:chetan10@ds045099.mongolab.com:45099/testrun',['users','projects','accounts','runlist']);
 app.configure(function() {
 	app.use(express.static(__dirname + '/public')); 		// set the static files location /public/img will be /img for users
 	app.use(express.logger('dev')); 						// log every request to the console
@@ -14,7 +14,7 @@ Date.prototype.getFullDate = function( date ){
 	var mnth = ( date.getMonth()+1 ) < 10 ? "0"+(date.getMonth()+1) :( date.getMonth()+1 );
 	var dates = ( date.getDate() ) < 10 ? "0"+(date.getDate()) :( date.getDate() );
     return [date.getFullYear(),mnth, dates ].join('/');
-};
+}; 
 var server = http.createServer(app).listen(process.env.PORT ||3000);
 console.log("App listening on port"+server.address().port);
 

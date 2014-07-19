@@ -1,5 +1,5 @@
 angular.module('testApp').controllerProvider.register('ProjctsListController',
-		function($scope, $http, mobCheckFactory, currencyFactory,$location,$window,$rootScope) {
+		function($scope, $http, mobCheckFactory,$location,$window,$rootScope) {
 			$scope.alert = {
 				type : '',
 				msg : ''
@@ -15,8 +15,20 @@ angular.module('testApp').controllerProvider.register('ProjctsListController',
 			$scope.gotoTestCases = function(){
 				$location.path("/home/testcases/new");
 			};
+			$scope.provideuserSessionData = function(i){
+				var wantd =  JSON.parse(sessionStorage.getItem('currentUser')) ?
+						JSON.parse(sessionStorage.getItem('currentUser')).data[i].selectedResult : false
+						if(!wantd){
+							 $rootScope.$apply(function()
+			       	    	          {
+								 			$rootScope.logoff();
+			       	    	          });
+						}else{
+							return wantd;
+						}
+			};
 			$scope.opensettings=function(){
-				if(window.innerWidth <=900){
+				if(window.innerWidth <=1230){
 					$(".leftnavclass").css({
 						"-webkit-transform":" translateX(0px) translateZ(0px) ",
 						"-moz-transform":" translateX(0px) translateZ(0px) ",
@@ -35,7 +47,7 @@ angular.module('testApp').controllerProvider.register('ProjctsListController',
 				ProBoxmodel : []
 			};
 			(function(){
-				var role = JSON.parse(sessionStorage.getItem('currentUser')).data.role.selectedResult;
+				var role = $scope.provideuserSessionData("role");
 				 if(role=="Admin"){
 					 $scope.regHead.button={
 									plus:true
@@ -47,7 +59,7 @@ angular.module('testApp').controllerProvider.register('ProjctsListController',
 							};
 				 }
 				 
-				 var currentProjects = JSON.parse(sessionStorage.getItem('currentProjects')) || [];
+				 var currentProjects = JSON.parse(mobCheckFactory.sessionStorer.getItem('currentProjects')) || [];
 				 if(currentProjects.length > 0 ){
 					 $scope.regBody.ProBoxmodel = currentProjects;
 				 }
@@ -56,7 +68,7 @@ angular.module('testApp').controllerProvider.register('ProjctsListController',
 				            url: '/fetchProjects',
 				            method: "POST",
 				            data:{
-				            	Account:JSON.parse(sessionStorage.getItem('currentUser')).data.Account.selectedResult
+				            	Account:$scope.provideuserSessionData("Account")
 				            }
 				        }).success(function (data, status, headers, config) {
 				        	    if(data.status){
@@ -64,7 +76,7 @@ angular.module('testApp').controllerProvider.register('ProjctsListController',
 				        	    	$scope.alert.msg = data.message;
 				        	    	$scope.regBody.ProBoxmodel =[];
 				        	    	$scope.regBody.ProBoxmodel  = data.data;
-				        	    	sessionStorage.setItem('currentProjects',JSON.stringify(data.data));
+				        	    	mobCheckFactory.sessionStorer.setItem('currentProjects',JSON.stringify(data.data));
 				        	    }else{
 				        	    	$scope.alert.type = "danger";
 				        	    	$scope.alert.msg = data.message;

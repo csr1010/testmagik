@@ -5,6 +5,18 @@ button:focus,
 div:focus {
     outline: none;
 }
+.runlist{
+	font-family: 'litFont';
+	transition: all ease 0.25s;
+	padding: 0.5% 0.25%;
+font-size: 2em;
+margin: 2% 2%;
+border: none;
+display: inline-block;
+background: rgb(255, 255, 255);
+width: 96%;
+border: 1px solid rgb(221, 215, 215);
+}
 button {
 border: none;
 /* height: 100%;
@@ -179,7 +191,11 @@ border: none;
 border-bottom: 1px solid rgb(90, 90, 90);
 display: inline-block;
 	}
-@media all and (min-width: 900px) {
+	button[disabled], html input[disabled] {
+cursor: default;
+background: #FAFAFA;
+}
+@media all and (min-width: 1230px) {
 	.dashesLeft{
 	display:none;
 }
@@ -898,30 +914,27 @@ border-radius: 50%;
 font-size: xx-large;
 }
 div .rundesc{
-color: #6F6E6E;
-background: #F5F5F5;
+border: 1px solid rgb(243, 243, 243);
 }
 .rundesc{
+	float:left;
 font-size: large;
 width: 95%;
 margin: 8px;
-padding: 5px;
 height: 70px;
 overflow-y: auto;
 word-break: break-word;
 overflow-wrap: break-word;
+display:inline-block
 }
 
 .runNumbers{
-	box-shadow: 0 2px 10px #BEBBBB;
-	font-size: x-large;
+	text-align: center;
+font-size: x-large;
 display: inline-block;
--webkit-transform: rotate(12deg);
--moz-transform: rotate(12deg);
--ms-transform: rotate(12deg);
--transform: rotate(12deg);
-padding:0.5% 7%;
-border-radius:50%;
+padding: 0.5% ;
+margin-left: -12%;
+width: 50px;color: #fff;
 }
 
 .blockr{
@@ -961,11 +974,6 @@ white-space: nowrap;
 }
 .ritsidelist:active{
 	background:#0090ff;
-	-webkit-transform: scale(0.95) scaleZ(1) ;
-	-moz-transform: scale(0.95) scaleZ(1)  ;
-	-ms-transform: scale(0.95) scaleZ(1)  ;
-	transform: scale(0.95) scaleZ(1)  ;
-	box-shadow: 0 0px 70px #ccc ;
 }
 .ritsidelist{
 	transition : all ease 0.25s;

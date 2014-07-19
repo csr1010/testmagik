@@ -12,8 +12,11 @@ module.exports = function(app) {
 	app.post('/questions', questions.saveallquestions);*/
 	
 	 app.post('/saveProjectdetails', projectcreation.createProject);
+	 app.post('/saveRundetails', projectcreation.createrun);
 	 app.post('/fetchProjects', projectcreation.getALLProjects);
 	app.get('/fetchSelectdProjct/:ts', projectcreation.getfixdprojct);
+	app.get('/fetchSelectdRUNZERA/:zera', projectcreation.getrunsbyZera);
+	app.get('/fetchSelectdRUNZERACount/:zera', projectcreation.getrunsCountbyZera);
 
 	 
     app.post('/register', clients.create);

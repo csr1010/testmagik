@@ -40,7 +40,6 @@
 						 </span>
 						<span class="col-xs-3" style=" font-size: medium;"  >
 						 <input class="ipClass" 
-						    type="{{regDetails.empid.type}}"   
 					       	name="test case count"
 					       	maxlength=3
 							ng-disabled="regBody.testcsBoxModel.count.disabled" 
@@ -49,16 +48,32 @@
 					        placeholder="{{regBody.testcsBoxModel.count.placeHolder}}"
 						 >
 						</span> 
+							<span class="col-xs-3" style="font-size: medium;
+								text-align: center;
+								line-height: 51px;border-top: 1px solid rgb(236, 236, 236);">
+															 ZERA 
+							 </span>
+						<span class="c col-xs-9" >
+							<input class="ipClass "  style="border-top: 1px solid rgb(236, 236, 236);"
+							   type="text" 
+							   	required
+							   	name="zera No:"
+							   	ng-disabled="regBody.testcsBoxModel.zeraNumber.disabled || !testCasedetails.projectdetails" 
+						        ng-pattern = "/^[\d]+$/"
+						        ng-model="regBody.testcsBoxModel.zeraNumber.selectedResult"
+							 	placeholder="{{regBody.testcsBoxModel.zeraNumber.placeHolder}}">
+							 
+						 </span>
 					</a>
 				</ul> 
 				
 				<ul class="nonfilgridsholder">
 				<div class="ritsidelist col-xs-12" ng-show="regBody.testcsBoxModel.testCases.length == 0 ">No testcases available</div>
-					<a ng-repeat ="i in regBody.testcsBoxModel.testCases"    class="ritsidelist col-xs-12 col-sm-6">
+					<a ng-repeat ="i in regBody.testcsBoxModel.testCases"    class="ritsidelist col-xs-12 ">
 						<label  ng-show = "testCasedetails.readMode" style="text-transform: capitalize;float: left;font-size: larger;"ng-style="{color:i.color}">
 							{{i.selectedResult.substr(0,1)}}
 						</label>
-						<span ng-show = "testCasedetails.readMode"  ui-sref="master.RunsList"class="rilistdesc">
+						<span ng-show = "testCasedetails.readMode" ng-click="navtoRun(i.info.timestamp)" class="rilistdesc">
 						 	{{i.selectedResult.substr(1,i.selectedResult.length)}}
 						 </span>
 						 <span ng-show = "!testCasedetails.readMode" class="rilistdesc">
@@ -73,7 +88,9 @@
 					        placeholder="enter test Case"
 						 >
 						 </span>
-						<button ng-show = "testCasedetails.buttons.nav" style="z-index:99999;margin-top:2%;border: none;" class="btn btn-default pull-right"><i class="icon icon-chevron-right"   ></i></button>
+						<button ng-click="navtoRun(i.info.timestamp)"ng-show = "testCasedetails.buttons.nav" style="z-index:99999;margin-top:2%;border: none;" class="btn btn-default pull-right">
+						 	<i class="icon icon-chevron-right"   ></i>
+						 </button>
 						
 						<button  ng-show = "testCasedetails.buttons.del" style="z-index:99999;padding:13px;color:#F3CACA;border: 1px solid #F3CACA;" 
 							class="btn btn-default pull-right"

@@ -6,7 +6,7 @@ angular.module('testApp').controllerProvider.register('masternavcntrlr',
 			$rootScope.regListheight = (window.innerHeight - 50) + "px";
 			$rootScope.usrMngmntListheight = (window.innerHeight - 50 - 60 - 60 - 5) + "px";
 	    });
-		if(window.innerWidth >900){
+		if(window.innerWidth >1230){
 			$(".leftnavclass").css({
 				"-webkit-transform":" translateX(0px) translateZ(0px) ",
 				"-moz-transform":" translateX(0px) translateZ(0px) ",
@@ -19,7 +19,7 @@ angular.module('testApp').controllerProvider.register('masternavcntrlr',
 		}
 	});
 	$scope.opensettings=function(){
-		if(window.innerWidth <=900){
+		if(window.innerWidth <=1230){
 			$(".leftnavclass").css({
 				"-webkit-transform":" translateX(0px) translateZ(0px) ",
 				"-moz-transform":" translateX(0px) translateZ(0px) ",
@@ -61,11 +61,11 @@ angular.module('testApp').controllerProvider.register('masternavcntrlr',
 		 }
 	 }
 	 else{
-		 $scope.logoff();
+		 $rootScope.logoff();
 	 }
 	
 	$scope.closesettings=function(){
-		if(window.innerWidth <=900){
+		if(window.innerWidth <=1230){
 			$(".leftnavclass").css({
 				"-webkit-transform":" translateX(-100%) translateZ(0px) ",
 				"-moz-transform":" translateX(-100%) translateZ(0px) ",
@@ -80,10 +80,9 @@ angular.module('testApp').controllerProvider.register('masternavcntrlr',
 			document.getElementsByClassName('leftnavclass')[0].style.webkitTransform = 'translateX(-100%) translateZ(0px)  rotateY(-30deg) rotateZ(0deg) ';
 		},200);*/
 		};
-	$scope.logoff = function(){
+	$rootScope.logoff = function(){
 		$location.path("/");
-		sessionStorage.setItem("accountInfo","");
-		sessionStorage.setItem("currentUser","");
-		sessionStorage.setItem("currentWeekRange","");
+		sessionStorage.setItem("currentUser",null);
+		sessionStorage.setItem("globalObject",null);
 	};
 });

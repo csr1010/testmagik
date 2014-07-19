@@ -1,6 +1,6 @@
 angular.module('testApp').controllerProvider.register('testcasescontrlr', 
-		function($scope,mobCheckFactory,$location,formvalidationFactory,$http){
-	$scope.regListheight = (window.innerHeight - 50) + "px";
+		function($rootScope,$scope,mobCheckFactory,$location,formvalidationFactory,$http){
+	$rootScope.regListheight = (window.innerHeight - 50) + "px";
 	$scope.testcsHead = {
 		title : "Test Cases",
 	};
@@ -20,6 +20,9 @@ angular.module('testApp').controllerProvider.register('testcasescontrlr',
 			readMode:true,
 			projectdetails:true
 	};
+	$scope.navtoRun = function(to){
+			$location.path("/home/RunsList/"+to);
+	};
 	$scope.gotoprjcts = function(){
 		$location.path("/home/ProjectsList");
 	};
@@ -34,11 +37,11 @@ angular.module('testApp').controllerProvider.register('testcasescontrlr',
 		         "del":false
 		};
 		$scope.testCasedetails.readMode = true;
-		$scope.testCasedetails.projectdetails=true;
+		$scope.testCasedetails.projectdetails=false;
 		$scope.regBody.testcsBoxModel.color=mobCheckFactory.colorCodes[Math.round(Math.random(1)*10)];
 		$scope.regBody.testcsBoxModel.timestamp = 
-			JSON.parse(sessionStorage.getItem('newProjectData')) ? 
-				JSON.parse(sessionStorage.getItem('newProjectData')).timestamp : new Date().getTime()
+			JSON.parse(mobCheckFactory.sessionStorer.getItem('newProjectData')) ? 
+				JSON.parse(mobCheckFactory.sessionStorer.getItem('newProjectData')).timestamp : new Date().getTime() +"PR"+$scope.regBody.testcsBoxModel.empid.selectedResult;
 		 $http({
 	            url: '/saveProjectdetails',
 	            method: "POST",
@@ -47,7 +50,7 @@ angular.module('testApp').controllerProvider.register('testcasescontrlr',
 	        	    if(data.status){
 	        	    	$scope.alert.type = "success";
 	        	    	$scope.alert.msg = data.message;
-	        	    	sessionStorage.setItem('newProjectData',JSON.stringify($scope.regBody.testcsBoxModel));
+	        	    	mobCheckFactory.sessionStorer.setItem('newProjectData',JSON.stringify($scope.regBody.testcsBoxModel));
 	        	    	$scope.keepNewPorjctsinSession();
 	        	    }else{
 	        	    	$scope.alert.type = "danger";
@@ -63,12 +66,12 @@ angular.module('testApp').controllerProvider.register('testcasescontrlr',
 		}
 	};
 	$scope.keepNewPorjctsinSession = function(){
-		var currentProjects = JSON.parse(sessionStorage.getItem('currentProjects')) || [];
+		var currentProjects = JSON.parse(mobCheckFactory.sessionStorer.getItem('currentProjects')) || [];
     	currentProjects = currentProjects.filter(function(val){
 				    		return val.timestamp != $scope.regBody.testcsBoxModel.timestamp;
     	});
     	currentProjects.unshift($scope.regBody.testcsBoxModel);
-    	sessionStorage.setItem('currentProjects',JSON.stringify(currentProjects));
+    	mobCheckFactory.sessionStorer.setItem('currentProjects',JSON.stringify(currentProjects));
 	};
 	$scope.editTestcases = function(){
 		$scope.testCasedetails.buttons={
@@ -87,8 +90,16 @@ angular.module('testApp').controllerProvider.register('testcasescontrlr',
 			var newtestCase = {
 					selectedResult:"",
 					disabled:false,
-					toDelete:false,
+					toDelete :false,
 					color:"",
+					info:{
+						timestamp: new Date().getTime() +"TSC"+$scope.regBody.testcsBoxModel.empid.selectedResult,
+						currentRuncount:0,
+						succsCount:0,
+						failCount:0,
+						timeSpent:"0 hrs"
+					}
+					
 				};
 			newtestCase.color = mobCheckFactory.colorCodes[Math.round(Math.random(1)*10)];
 			$scope.regBody.testcsBoxModel.testCases.unshift(newtestCase);
@@ -106,14 +117,31 @@ angular.module('testApp').controllerProvider.register('testcasescontrlr',
 		});
 		$scope.regBody.testcsBoxModel.count.selectedResult = $scope.regBody.testcsBoxModel.testCases.length;
 	};
+	$scope.provideuserSessionData = function(i){
+		var wantd =  JSON.parse(sessionStorage.getItem('currentUser')) ?
+				JSON.parse(sessionStorage.getItem('currentUser')).data[i].selectedResult : false
+				if(!wantd){
+					 $rootScope.$apply(function()
+	       	    	          {
+						 			$rootScope.logoff();
+	       	    	          });
+				}else{
+					return wantd;
+				}
+	};
 	$scope.regBody = {
-			testcsBoxModel :{
+			testcsBoxModel :{ 
 				timestamp:new Date().getTime(),
+				zeraNumber:{
+					selectedResult:"",
+					placeHolder:"enter ZERA NO:",
+					disabled:false,
+				},
 				Account:{
-					selectedResult:JSON.parse(sessionStorage.getItem('currentUser')).data.Account.selectedResult,
+					selectedResult:$scope.provideuserSessionData("Account"),
 				},
 				empid:{
-					selectedResult:JSON.parse(sessionStorage.getItem('currentUser')).data.empid.selectedResult,
+					selectedResult:$scope.provideuserSessionData("empid"),
 				},
 				name:{
 					selectedResult:"",
@@ -122,7 +150,7 @@ angular.module('testApp').controllerProvider.register('testcasescontrlr',
 				},
 				color:"",
 				count:{
-					selectedResult:"",
+					selectedResult:0,
 					placeHolder:"No:tst cases",
 					disabled:true,
 					type:mobCheckFactory.mobileCheck() ? "number" :"number"
@@ -138,7 +166,7 @@ angular.module('testApp').controllerProvider.register('testcasescontrlr',
 	        }).success(function (data, status, headers, config) {
 	        	    if(data.status){
 	        	    	$scope.regBody.testcsBoxModel = data.data;
-	        	    	sessionStorage.setItem('newProjectData',JSON.stringify($scope.regBody.testcsBoxModel));
+	        	    	mobCheckFactory.sessionStorer.setItem('newProjectData',JSON.stringify($scope.regBody.testcsBoxModel));
 	        	    	$scope.keepNewPorjctsinSession();
 	        	    }else{
 	        	    	$scope.alert.type = "danger";
@@ -151,7 +179,7 @@ angular.module('testApp').controllerProvider.register('testcasescontrlr',
 	(function(){
 		var pathLocation = $location.$$url.split("/");
 		var endID = pathLocation[pathLocation.length-1];
-		var role = JSON.parse(sessionStorage.getItem('currentUser')).data.role.selectedResult;
+		var role = $scope.provideuserSessionData("role");
 		if(role=="Admin"){
 			if(endID ==="new"){
 			$scope.testCasedetails.buttons={
@@ -188,16 +216,16 @@ angular.module('testApp').controllerProvider.register('testcasescontrlr',
 		 $scope.testCasedetails.projectdetails=false;
 	 }
 				if(endID ==="new"){
-					sessionStorage.setItem('newProjectData',null);
+					mobCheckFactory.sessionStorer.setItem('newProjectData',null);
 				}
 				else{
-					var currentProjects = JSON.parse(sessionStorage.getItem('currentProjects')) || [];
+					var currentProjects = JSON.parse(mobCheckFactory.sessionStorer.getItem('currentProjects')) || [];
 					if(currentProjects.length > 0 ){
 						var projectFound = false;
 						for(var i=0;i<currentProjects.length;i++){
 							if(currentProjects[i].timestamp == endID){
 								$scope.regBody.testcsBoxModel = currentProjects[i];
-								sessionStorage.setItem('newProjectData',JSON.stringify($scope.regBody.testcsBoxModel));
+								mobCheckFactory.sessionStorer.setItem('newProjectData',JSON.stringify($scope.regBody.testcsBoxModel));
 								projectFound = true;
 								break;
 							}

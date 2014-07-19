@@ -134,7 +134,6 @@
 		       	    	      'js/factory/mobileCheckFactory.js',
 		       	    	      'js/factory/formvalidationFactory.js',
 		       	    	      'js/factory/filterprovider.js',
-		       	    	      'js/factory/currencyFactory.js', 
 	       	    	      ];
 	       	    	      $script(dependencies, function()
 	       	    	      {
@@ -158,7 +157,6 @@
 	       	    	      [
 	       	    	          'js/controllers/Projects.js',
 		       	    	      'js/factory/mobileCheckFactory.js',
-		       	    	      'js/factory/currencyFactory.js', 
 	       	    	      ];
 	       	    	      $script(dependencies, function()
 	       	    	      {
@@ -196,7 +194,7 @@
   	       	    	  }
   	       	}
                }).state('master.RunsList', {
-                   url: "/RunsList",
+                   url: "/RunsList/:id",
                    templateUrl: 'html/RunsList.html',
       		       controller: 'RunsListController',
       		      resolve:{
@@ -207,7 +205,8 @@
     	       	    	      [
     	       	    	          'js/controllers/RunsList.js',
     		       	    	      'js/factory/mobileCheckFactory.js',
-    		       	    	      'js/factory/currencyFactory.js', 
+    		       	    	      'js/factory/timerFactory.js',
+    		       	    	   'js/factory/formvalidationFactory.js',
     	       	    	      ];
     	       	    	      $script(dependencies, function()
     	       	    	      {
@@ -256,7 +255,7 @@
     }).run(function($rootScope,$location){
 		  $rootScope.$on('$stateChangeStart', 
 					function(event, toState, toParams, fromState, fromParams)
-					{/* 
+					{ 
 			  		var currentUser="";
 			  			if($.trim(sessionStorage.getItem("currentUser")) == "") 
 			  				currentUser = null;
@@ -270,10 +269,13 @@
 				    	   currentUser.data.empid == ""
 				    		 )
 				    	   ){
-				    		$location.path("/");
+				    		 $rootScope.$apply(function()
+			       	    	          {
+								 			$rootScope.logoff();
+			       	    	          });
 				    		event.preventDefault();
 				    	}
-					*/});  
+					});  
 	  
     });
 })();

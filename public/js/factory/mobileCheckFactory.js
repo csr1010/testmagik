@@ -1,18 +1,19 @@
 angular.module('testApp').provide.service('mobCheckFactory', function($rootScope) {
+	window.globalObjectStorer=JSON.parse(sessionStorage.getItem('globalObject')) || {};
 	return mobileCheckresult ={
 				colorCodes:[
-				            "RGB(164, 196, 0)",
-				            "RGB(96, 169, 23)",
-				            "RGB(250, 104, 0)",
-				            "RGB(244, 114, 208)",
-				            "RGB(27, 161, 226)",
-				            "RGB(0, 80, 239)",
-				            "RGB(216, 0, 115)",
-				            "RGB(240, 163, 10)",
+				            "#3EE2C1",
+				            "#F5B192",
+				            "#F592A6",
+				            "#C592F5",
+				            "#77D391",
+				            "#CFD377",
+				            "#CCB07F",
+				            "#DDADAD",
 				            "#FF8E8E",
 				            "#ADFA95",
-				            "RGB(118, 96, 138)",
-				            ],
+				            "#C298B4",
+				            ], 
 				mobileCheck:function isMobile() {
 				    var mobile = ['iphone','ipad','android','blackberry',
 				                  'nokia','opera mini','windows mobile','windows phone','iemobile']; 
@@ -21,5 +22,14 @@ angular.module('testApp').provide.service('mobCheckFactory', function($rootScope
 				    		return false;
 				    return false;//default
 				},
+				sessionStorer:{
+					setItem:function(key,val){
+						globalObjectStorer[key] = val;
+						sessionStorage.setItem('globalObject',JSON.stringify(globalObjectStorer));
+					},
+					getItem:function(key){
+						return globalObjectStorer[key] || null;
+					},
+				}
 		 };
 	 });
