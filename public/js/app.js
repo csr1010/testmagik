@@ -106,7 +106,7 @@
 		       	    	      var deferred = $q.defer();
 		       	    	      var dependencies =
 		       	    	      [
-		       	    	          'js/controllers/mastnav.js',
+		       	    	          'js/controllers/mastnav.js', 
 		       	    	      ];
 		       	    	      $script(dependencies, function()
 		       	    	      {

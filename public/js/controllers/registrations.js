@@ -30,15 +30,17 @@ angular.module('testApp').controllerProvider.register('registrationController',
 								return wantd;
 							}
 				};
-			$rootScope.usrMngmntListheight = (window.innerHeight - 50 - 60 - 60 - 10) + "px";
+			$rootScope.usrMngmntListheight = (window.innerHeight - 50 ) + "px";
+				 
 			$scope.totEmpList = [];
 			$scope.myformName = {
 				namefiltr : [],
 				WONfiltr : [],
-				filteredresults : []
+				filteredresults : [],
+				showHidesearch:false
 			};
 			$scope.regHead = {
-				title : "User Management",
+				title : "Users",
 			};
 			$scope.regBody = {
 					regBoxmodel : [  ]

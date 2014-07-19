@@ -4,7 +4,7 @@ angular.module('testApp').controllerProvider.register('masternavcntrlr',
 	$(window).resize(function(){
 		$rootScope.$apply(function(){
 			$rootScope.regListheight = (window.innerHeight - 50) + "px";
-			$rootScope.usrMngmntListheight = (window.innerHeight - 50 - 60 - 60 - 5) + "px";
+			$rootScope.usrMngmntListheight = (window.innerHeight - 50 ) + "px";
 	    });
 		if(window.innerWidth >1230){
 			$(".leftnavclass").css({
@@ -41,7 +41,7 @@ angular.module('testApp').controllerProvider.register('masternavcntrlr',
 				    	},
 				    	body:{
 							menu:[
-							      {title:"User Management" ,href:".registration"},
+							      {title:"Users" ,href:".registration"},
 							      {title:"Projects" ,href:".ProjectsList"},
 							      ]	
 				    	}
@@ -50,7 +50,7 @@ angular.module('testApp').controllerProvider.register('masternavcntrlr',
 		 else{
 			 $scope.navigationMenu = {
 						header:{
-				    		title:"TestsRun",
+				    		title:"Test Magik",
 				    	},
 				    	body:{
 							menu:[

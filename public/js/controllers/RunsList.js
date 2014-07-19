@@ -99,7 +99,7 @@ angular.module('testApp').controllerProvider.register('RunsListController',
 				var obj =JSON.parse(mobCheckFactory.sessionStorer.getItem('runData')) || {};
     	    	obj.hasOwnProperty($scope.regBody.runBoxmodel[0].info.tstCASID) 
     	    	    ? hasProp = true 
-    	    	     : obj[$scope.regBody.runBoxmodel[0].info.tstCASID] = [];
+    	    	     : obj[$scope.regBody.runBoxmodel[0].info.tstCASID] = $scope.regBody.runBoxmodel[0];
     	    	if(hasProp){
     	    		var dump = obj[$scope.regBody.runBoxmodel[0].info.tstCASID];
     	    		for(var j = 0 ; j < dump.length ; j++){
@@ -110,6 +110,7 @@ angular.module('testApp').controllerProvider.register('RunsListController',
     	    		}
     					dump.unshift($scope.regBody.runBoxmodel[0]);
     	    	}
+    	    	
     	    	mobCheckFactory.sessionStorer.setItem("runData",JSON.stringify(obj));
 			};
 			$scope.keepoldPorjctsinSession=function(){

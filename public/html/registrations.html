@@ -8,29 +8,31 @@
   		   <abbr title="Register Employess here remove or transfer , activate or de activate them etc..">
 		              <span class="headerspan">{{regHead.title}}</span>
 		   </abbr>
-  		   </header>
-  		   <aside class="aside">
-  		   <div  class="col-xs-12 "><!-- filterme.skillcast.selectedResult  -->
-  		        <div></div>
-  		        <input ng-change="myformName['namefiltr'] = filterme.name.selectedResult" 
-  		               style="width: 49%;" 
+		    <button ng-click ="submitREGboxes()"class='center buttonAligner'> <i  style="background: #3EE2C1;"class="glyphicon glyphicon-ok footericon" > </i></button>
+		   <button  ng-click ="deleteREGboxes()" class='center buttonAligner'> <i  style="background: #F5A0B7" class="glyphicon glyphicon-remove footericon" > </i></button>
+		    <button  ng-click ="addRegbox()" class='center buttonAligner'> <i class="glyphicon glyphicon-plus footericon" > </i></button>
+		    
+		  <div class="logoff">
+  		  <button  ng-click="$scope.myformName.showHidesearch = true"style="font-size: x-large;background: rgba(255, 0, 0, 0.02);;color: #FDFCFC;">
+  		      <i class="icon icon-search"></i>
+  		      </button>
+  		   </div>
+  		     <div   ng-show="$scope.myformName.showHidesearch" class="topsearchClass"><!-- filterme.skillcast.selectedResult  -->
+  		        <input style="border: none;"class="col-xs-5"ng-change="myformName['namefiltr'] = filterme.name.selectedResult" 
   		               ng-model="filterme.name.selectedResult" 
   		               ng-list  
   		               placeholder = "eg:Chetan,kumar"
   		               class="textaligneraside1" >
   		               
-  		        <input ng-change="myformName['WONfiltr'] = filterme2.empid.selectedResult"  
+  		        <input  style="border: none;border-left: 1px solid rgb(236, 232, 232);" class="col-xs-5" ng-change="myformName['WONfiltr'] = filterme2.empid.selectedResult"  
   		               ng-list  
-  		               style="width: 49%;border-left: 1px solid #CECECE;" 
   		               ng-model="filterme2.empid.selectedResult " 
   		               placeholder = "eg:533135,533144 "
   		               class="textaligneraside1" >
-  		               
-  		         <div class="center">filter by NAME / EMP ID</div>
+  		         <button class="col-xs-2" ng-click="$scope.myformName.showHidesearch = false"><i  style="background:#F5A0B7" class="glyphicon glyphicon-remove footericon" > </i></button>      
   		  </div>
-  		   </aside>
-  		  
-  		   <section ng-init="range=10" >
+  		   </header>
+  		   <section ng-init="range=10" style="background: rgb(236, 236, 236);">
 				<ul class="nonfilgridsholder">
 				<div ng-repeat="(key,mainobj) in regBody" style="display: inline-block;width: 100%;" >
 					<form name=RegFormy ng-style="{height:usrMngmntListheight}" infinite-scroll="range = range +  1" infinite-scroll-distance="0"  style="overflow: auto;">
@@ -213,13 +215,13 @@
 			 </div>
 				</ul>  		   
   		   </section>
-  		   <footer>
+  		<!--    <footer>
   		        <button ng-click ="addRegbox()"class='col-xs-3 center '> <i class="glyphicon glyphicon-plus footericon" > </i> <div class="footertext">add</div></button>
   		        <button ng-click ="copyREGboxes()" class='col-xs-3 center '> <i class="glyphicon glyphicon-share footericon"> </i> <div class="footertext">copy</div></button>
   		        <button ng-click ="deleteREGboxes()"class='col-xs-3 center '> <i class="glyphicon glyphicon-remove footericon"  > </i> <div class="footertext">delete</div></button>
   		        <button ng-click ="submitREGboxes()"class='col-xs-3 center'> <i class="glyphicon glyphicon-save footericon" > </i>  <div class="footertext" >submit</div></button>
-  		       <!--  <span class='col-xs-6'><div class="totaldollars">Total $ {{ superFinalPrice }}</div> </span> -->
-  		   </footer>
+  		        <span class='col-xs-6'><div class="totaldollars">Total $ {{ superFinalPrice }}</div> </span>
+  		   </footer> -->
   		   
   		    <div>
  
