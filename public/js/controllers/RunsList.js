@@ -1,5 +1,5 @@
 angular.module('testApp').controllerProvider.register('RunsListController',
-		function($scope, $http, mobCheckFactory, formvalidationFactory,$location,$rootScope,$window,timerFactory,$cacheFactory) {
+		function($scope, serviceFactory, mobCheckFactory, formvalidationFactory,$location,$rootScope,$window,timerFactory,$cacheFactory) {
 			$scope.alert = {
 				type : '',
 				msg : '',
@@ -66,28 +66,48 @@ angular.module('testApp').controllerProvider.register('RunsListController',
 			    	$scope.alert.msg = errorResponse.description;
 				}
 			};
+			 $scope.ifregSuccess = function(data){
+	        	    if(data.status){
+	        	    	$scope.alert.type = "success";
+	        	    	$scope.alert.msg = data.message;
+	        	    	$scope.keepNewPorjctsinSession();
+	        	    }else{
+	        	    	$scope.alert.type = "danger";
+	        	    	$scope.alert.msg = data.message;
+	        	    }
+	            };
+			  $scope.iffetchSuccess = function(data){
+	        	    if(data.status){
+	        	    	$scope.currentRunCount =  data.data;
+	        	    }else{
+	        	    	$scope.currentRunCount =  1;
+	        	    }
+	            };
+			  $scope.iffetch2Success = function(data){
+	        	    if(data.status){
+	        	    	$scope.regBody.oldrunBoxmodel = data.data;
+	        	    	$scope.keepoldPorjctsinSession();
+	        	    }else{
+	        	    	$scope.alert.type = "danger";
+	        	    	$scope.alert.msg = data.message;
+	        	    }
+	            
+			  };
+						 $scope.iffail = function(errorstat){
+							 	$scope.alert.type = "danger";
+						    	$scope.alert.msg = "oops ! something is wrong tryAgain"+errorstat;
+						 };
 			$scope.saveruns= function(){
 				var errorResponse = formvalidationFactory.formValidation($scope.alert.form);
 				if(!errorResponse.error ){
 					$scope.stopTime();
 					$scope.regBody.runBoxmodel[0].times.actTime.selectedResult = $rootScope.times;
 					$scope.regBody.runBoxmodel[0].runCount = 	$scope.currentRunCount;
-				 $http({
-			            url: '/saveRundetails',
-			            method: "POST",
-			            data: $scope.regBody.runBoxmodel[0],
-			        }).success(function (data, status, headers, config) {
-			        	    if(data.status){
-			        	    	$scope.alert.type = "success";
-			        	    	$scope.alert.msg = data.message;
-			        	    	$scope.keepNewPorjctsinSession();
-			        	    }else{
-			        	    	$scope.alert.type = "danger";
-			        	    	$scope.alert.msg = data.message;
-			        	    }
-			            }).error(function (data, status, headers, config) {
-			            	alert("some thing is wrong"+status);
-			            });
+					 serviceFactory.getData({
+				            url: '/saveRundetails',
+				            method: "POST",
+				            data: $scope.regBody.runBoxmodel[0],
+				        },$scope.ifregSuccess,$scope.iffail);
 				}
 				else{
 					$scope.alert.type = "danger";
@@ -131,19 +151,12 @@ angular.module('testApp').controllerProvider.register('RunsListController',
 			$scope.getCountFromDB = function(){
 				var currentZERA = $scope.alert.zera;
 				var tstcasId = $scope.alert.endID ;
-				$http({
+				serviceFactory.getData({
 		            url: '/fetchSelectdRUNZERACount/'+currentZERA+"_"+tstcasId+"_"+new Date().getTime(),
 		            method: "GET",
 		            cache:false,
-		        }).success(function (data, status, headers, config) {
-		        	    if(data.status){
-		        	    	$scope.currentRunCount =  data.data;
-		        	    }else{
-		        	    	$scope.currentRunCount =  1;
-		        	    }
-		            }).error(function (data, status, headers, config) {
-		            	alert("some thing is wrong"+status);
-		            });
+		        },$scope.iffetchSuccess ,$scope.iffail);
+				
 			};
 			$scope.ifrunsuccs = function(){
 				$scope.regBody.runBoxmodel[0].description=[];
@@ -185,21 +198,11 @@ angular.module('testApp').controllerProvider.register('RunsListController',
 					$scope.regBody.oldrunBoxmodel = [];
 			};
 			$scope.getrunbyZERA = function(ts){
-				 $http({
-			            url: '/fetchSelectdRUNZERA/'+ts,
-			            method: "GET",
-			            cache:false,
-			        }).success(function (data, status, headers, config) {
-			        	    if(data.status){
-			        	    	$scope.regBody.oldrunBoxmodel = data.data;
-			        	    	$scope.keepoldPorjctsinSession();
-			        	    }else{
-			        	    	$scope.alert.type = "danger";
-			        	    	$scope.alert.msg = data.message;
-			        	    }
-			            }).error(function (data, status, headers, config) {
-			            	alert("some thing is wrong"+status);
-			            });
+				serviceFactory.getData({
+		            url: '/fetchSelectdRUNZERA/'+ts,
+		            method: "GET",
+		            cache:false,
+		        },$scope.iffetch2Success ,$scope.iffail);
 			};
 			$scope.provideuserSessionData = function(i){
 				var wantd =  JSON.parse(sessionStorage.getItem('currentUser')) ?

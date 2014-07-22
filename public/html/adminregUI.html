@@ -1,7 +1,7 @@
 <div>
-  <alert ng-show="alert.msg != ''" type="alert.type" close="alert.msg='' ">{{alert.msg}}</alert>
+  <alert ng-show="alert.msg != ''" type="alert.type" ng-swipe-right="alert.msg='' "   close="alert.msg='' ">{{alert.msg}}</alert>
 </div>
-  <div class="col-xs-12 col-sm-6">
+  <div class="col-xs-12 ">
       <form class="form-signin" name="registrationForm">
         <div ng-init="regDetails['form'] = registrationForm" class="form-signin-heading" style='font-size:xx-large;'>Register here</div>
       

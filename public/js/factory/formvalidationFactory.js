@@ -21,7 +21,7 @@ angular.module('testApp').provide.service('formvalidationFactory', function($roo
 										break;
 									case "pattern":
 										errorDetails.error = true;
-										errorDetails.description="The following fields '"+errorFields.join( " , ") +"' have invalid Pattern ,Please enter accordingly";
+										errorDetails.description=" '"+errorFields.join( " , ") +"' have invalid Pattern error";
 										break;
 									default:
 										errorDetails.description="";

@@ -1,5 +1,5 @@
 angular.module('testApp').controllerProvider.register('registrationController',
-		function($scope, $http, mobCheckFactory,formvalidationFactory,$rootScope) {
+		function($scope, serviceFactory, mobCheckFactory,formvalidationFactory,$rootScope) {
 			$scope.alert = {
 				type : '',
 				msg : ''
@@ -16,6 +16,8 @@ angular.module('testApp').controllerProvider.register('registrationController',
 					$(".blockr").css({
 						"display":"block"
 					});
+					$(".nonfulfillClass").addClass("blurrr");
+					serviceFactory.movNormal();
 				}
 				};
 				$scope.provideuserSessionData = function(i){
@@ -185,6 +187,37 @@ angular.module('testApp').controllerProvider.register('registrationController',
 							}
 				});
 			};
+			 $scope.ifregSuccess = function(data){
+	        	    if(data.status){
+	        	    	$scope.alert.type = "success";
+	        	    	$scope.alert.msg = data.message;
+	        	    }else{
+	        	    	$scope.alert.type = "danger";
+	        	    	$scope.alert.msg = data.message;
+	        	    }
+	            };
+				 $scope.iffail = function(errorstat){
+					 	$scope.alert.type = "danger";
+				    	$scope.alert.msg = "oops ! something is wrong tryAgain"+errorstat;
+				 };
+		     $scope.iffetchSuccess = function(data){
+
+	        	    if(data.status){
+	        	    	$scope.alert.type = "success";
+	        	    	$scope.alert.msg = data.message;
+	        	    	$scope.regBody['regBoxmodel']=[];
+	        	    	$scope.regBody['regBoxmodel'] = 
+	        	    	$scope.regBody['regBoxmodel'].concat(data.data);
+	        	    	$scope.regBody['regBoxmodel'].forEach(function(obj,index){
+	    					if($scope.totEmpList.indexOf(obj.empid.selectedResult)<0) 
+	    						$scope.totEmpList.push(obj.empid.selectedResult);
+	    					});
+	        	    }else{
+	        	    	$scope.alert.type = "danger";
+	        	    	$scope.alert.msg = data.message;
+	        	    }
+	            
+		     };
 			$scope.submitREGboxes = function(){
 				if(
 						($scope.regBody['regBoxmodel'].length > 0 ? $scope.saveREGbox() : true)
@@ -195,46 +228,19 @@ angular.module('testApp').controllerProvider.register('registrationController',
 							return (val.info.isChanged);
 				});
 				if(postData.length > 0)
-				 $http({
-			            url: '/register',
-			            method: "POST",
-			            data: postData,
-			        }).success(function (data, status, headers, config) {
-			        	    if(data.status){
-			        	    	$scope.alert.type = "success";
-			        	    	$scope.alert.msg = data.message;
-			        	    }else{
-			        	    	$scope.alert.type = "danger";
-			        	    	$scope.alert.msg = data.message;
-			        	    }
-			            }).error(function (data, status, headers, config) {
-			            	alert("some thing is wrong"+status);
-			            });
+					 serviceFactory.getData({
+				            url: '/register',
+				            method: "POST",
+				            data: postData,
+				        },$scope.ifregSuccess,$scope.iffail);
 				}
 			};
 			$scope.fetchREGBox=function(x){
-				 $http({
+				 serviceFactory.getData({
 			            url: '/users/'+x,
 			            method: "GET",
 			            cache:true,
-			        }).success(function (data, status, headers, config) {
-			        	    if(data.status){
-			        	    	$scope.alert.type = "success";
-			        	    	$scope.alert.msg = data.message;
-			        	    	$scope.regBody['regBoxmodel']=[];
-			        	    	$scope.regBody['regBoxmodel'] = 
-			        	    	$scope.regBody['regBoxmodel'].concat(data.data);
-			        	    	$scope.regBody['regBoxmodel'].forEach(function(obj,index){
-			    					if($scope.totEmpList.indexOf(obj.empid.selectedResult)<0) 
-			    						$scope.totEmpList.push(obj.empid.selectedResult);
-			    					});
-			        	    }else{
-			        	    	$scope.alert.type = "danger";
-			        	    	$scope.alert.msg = data.message;
-			        	    }
-			            }).error(function (data, status, headers, config) {
-			            	alert("some thing is wrong"+status);
-			            });
+			        },$scope.iffetchSuccess ,$scope.iffail);
 			};
 			 (function(){
 					 var Account = $scope.provideuserSessionData("Account");

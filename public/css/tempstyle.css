@@ -23,15 +23,24 @@ border: none;
 /* height: 100%;
 width: 100%; */
 }
+.blurrr{
+	 -webkit-filter: blur(9px);
+  -moz-filter: blur(9px);
+  -o-filter: blur(9px);
+  -ms-filter: blur(9px);
+  filter: blur(9px);
+	opacity:0.85;
+}
 .close {
-float: left;
 font-size: 21px;
 font-weight: bold;
 line-height: 1;
-color: #000;
+color: #FCF8F8;
 text-shadow: 0 1px 0 #FFF;
-opacity: .2;
-filter: alpha(opacity=20);
+opacity: 1;
+text-align: center;
+display: block;
+width: 100%;
 }
 .logoff  button,.dashes button,.dashesLeft button{
 	height: 100%;
@@ -69,14 +78,13 @@ select{
 }
 .leftnavclass{
 	width:300px;
-	background: rgb(97, 97, 97);
 	position: absolute;
 	/* box-shadow: 3px 2px 5px rgb(88, 88, 88); */
 	z-index: 999999;
-	 -webkit-transform: translateX(0px) translateZ(0px) ;
-	 transform: translateX(0px) translateZ(0px) ; 
-	 -moz-transform: translateX(0px) translateZ(0px) ;
-	 -o-transform: translateX(0px) translateZ(0px) ;
+	 -webkit-transform: translateX(-100%) translateZ(0px) ;
+	 transform: translateX(-100%) translateZ(0px) ; 
+	 -moz-transform: translateX(-100%) translateZ(0px) ;
+	 -o-transform: translateX(-100%) translateZ(0px) ;
 	-webkit-transition: -webkit-transform   0.15s ease; /* Changed here */ 
      -moz-transition: -moz-transform   0.15s ease;
        -o-transition: -o-transform   0.15s ease;
@@ -140,6 +148,18 @@ border: 1px solid rgb(214, 213, 213);
   		-moz-flex-flow: column wrap;
   		-ms-flex-flow: column wrap;
   		flex-flow: column wrap;
+  		transition:all ease 300ms;
+  			/*  -webkit-transform: translateX(10%) translateZ(0px) ;
+	 transform: translateX(10%) translateZ(0px) ; 
+	 -moz-transform: translateX(10%) translateZ(0px) ;
+	 -o-transform: translateX(10%) translateZ(0px) ; 
+	 transition:all ease 300ms;*/
+}
+.movenorml{
+			 -webkit-transform: translateX(0px) translateZ(0px) rotateZ(0deg) !important;
+	 transform: translateX(0px) translateZ(0px)  rotateZ(0deg) !important; 
+	 -moz-transform: translateX(0px) translateZ(0px)  rotateZ(0deg) !important;
+	 -o-transform: translateX(0px) translateZ(0px)  rotateZ(0deg) !important;
 }
 .supermainlayout{
 /* -webkit-perspective: 1700;
@@ -180,24 +200,43 @@ cursor: pointer;
 border: none;
 border-bottom: 1px solid rgb(238, 235, 235);
 display: inline-block;
-box-shadow: 0 0 0px #fff ;
 	}
 	.leftsidelist{
 	width: 100%;
 padding: 2% 4%;
 font-size: 2em;
-color: #E4E4E4;
 /* text-align: center; */
 cursor: pointer;
 border: none;
-border-bottom: 1px solid rgb(90, 90, 90);
 display: inline-block;
+color: #FCFCFD;
+text-shadow: 0 0 2px white;
+border-bottom: 1px solid rgba(180, 179, 179, 0.79);
 	}
 	button[disabled], html input[disabled] {
 cursor: default;
 background: #FAFAFA;
 }
+.leftnavclass header{
+	background:rgba(255, 255, 255, 0) ;
+}
+.leftnavclass .logoff button{
+	background: rgba(255, 255, 255, 0.03);
+}
+.leftnavclass{
+background: rgba(80, 77, 77, 0.45);
+}
 @media all and (min-width: 1230px) {
+	.leftnavclass .headerspan {
+	color: #fff ;
+}
+	.leftnavclass header {
+background: #0090ff;
+}
+	.leftsidelist {
+color: #E8EBEE;
+border-bottom: 1px solid rgba(180, 179, 179, 0.18);
+}
 	.dashesLeft{
 	display:none;
 }
@@ -570,6 +609,20 @@ left: calc(50% - 25px);
 	line-height: 2.25em;
 	text-align: right;
 }
+.inleft{
+	-webkit-transform: translateX(-25%) translateZ(0px) ;
+	 transform: translateX(-25%) translateZ(0px) ; 
+	 -moz-transform: translateX(-25%) translateZ(0px) ;
+	 -o-transform: translateX(-25%) translateZ(0px) ;
+	 transition:all ease 300ms;
+}
+.inrit{
+	-webkit-transform: translateX(15%) translateZ(0px) rotateZ(2deg) ;
+	 transform: translateX(15%) translateZ(0px) rotateZ(2deg);
+	 -moz-transform: translateX(15%) translateZ(0px) rotateZ(2deg);
+	 -o-transform: translateX(15%) translateZ(0px) rotateZ(2deg);
+	 transition:all ease-in-out 200ms;
+}
 .nonfilgridsholder{
 	width: 100%;
 	display: inline-block;
@@ -889,7 +942,7 @@ height:32px;
 	font-family:'litFont';transition : all linear 0.10s;
 }
 .leftsidelist>span{
-width: 85%;
+width: 85%;float:right;
 display: inline-block;
 overflow: hidden;
 text-overflow: ellipsis;
@@ -955,7 +1008,7 @@ z-index: 999997;
 left: 0;
 top: 0;
 opacity: 0.4;
-background: rgb(141, 141, 141);
+background: rgba(255, 255, 255, 0);
 display:none;
 }
 footer{

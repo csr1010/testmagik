@@ -1,5 +1,5 @@
 angular.module('testApp').controllerProvider.register('testcasescontrlr', 
-		function($rootScope,$scope,mobCheckFactory,$location,formvalidationFactory,$http){
+		function($rootScope,$scope,mobCheckFactory,$location,formvalidationFactory,serviceFactory){
 	$rootScope.regListheight = (window.innerHeight - 50) + "px";
 	$scope.testcsHead = {
 		title : "Test Cases",
@@ -42,29 +42,44 @@ angular.module('testApp').controllerProvider.register('testcasescontrlr',
 		$scope.regBody.testcsBoxModel.timestamp = 
 			JSON.parse(mobCheckFactory.sessionStorer.getItem('newProjectData')) ? 
 				JSON.parse(mobCheckFactory.sessionStorer.getItem('newProjectData')).timestamp : new Date().getTime() +"PR"+$scope.regBody.testcsBoxModel.empid.selectedResult;
-		 $http({
-	            url: '/saveProjectdetails',
-	            method: "POST",
-	            data: $scope.regBody.testcsBoxModel,
-	        }).success(function (data, status, headers, config) {
-	        	    if(data.status){
-	        	    	$scope.alert.type = "success";
-	        	    	$scope.alert.msg = data.message;
-	        	    	mobCheckFactory.sessionStorer.setItem('newProjectData',JSON.stringify($scope.regBody.testcsBoxModel));
-	        	    	$scope.keepNewPorjctsinSession();
-	        	    }else{
-	        	    	$scope.alert.type = "danger";
-	        	    	$scope.alert.msg = data.message;
-	        	    }
-	            }).error(function (data, status, headers, config) {
-	            	alert("some thing is wrong"+status);
-	            });
+		 
+				 serviceFactory.getData({
+			            url: '/saveProjectdetails',
+			            method: "POST",
+			            data: $scope.regBody.testcsBoxModel,
+			        },$scope.ifregSuccess,$scope.iffail);
 		}
 		else{
 			$scope.alert.type = "danger";
 	    	$scope.alert.msg = errorResponse.description;
 		}
 	};
+	 $scope.ifregSuccess = function(data){
+ 	    if(data.status){
+	    	$scope.alert.type = "success";
+	    	$scope.alert.msg = data.message;
+	    	mobCheckFactory.sessionStorer.setItem('newProjectData',JSON.stringify($scope.regBody.testcsBoxModel));
+	    	$scope.keepNewPorjctsinSession();
+	    }else{
+	    	$scope.alert.type = "danger";
+	    	$scope.alert.msg = data.message;
+	    }
+    };
+  $scope.iffetchSuccess = function(data){
+	    if(data.status){
+	    	$scope.regBody.testcsBoxModel = data.data;
+	    	mobCheckFactory.sessionStorer.setItem('newProjectData',JSON.stringify($scope.regBody.testcsBoxModel));
+	    	$scope.keepNewPorjctsinSession();
+	    }else{
+	    	$scope.alert.type = "danger";
+	    	$scope.alert.msg = data.message;
+	    }
+  
+  };
+			 $scope.iffail = function(errorstat){
+				 	$scope.alert.type = "danger";
+			    	$scope.alert.msg = "oops ! something is wrong tryAgain"+errorstat;
+			 };
 	$scope.keepNewPorjctsinSession = function(){
 		var currentProjects = JSON.parse(mobCheckFactory.sessionStorer.getItem('currentProjects')) || [];
     	currentProjects = currentProjects.filter(function(val){
@@ -159,22 +174,11 @@ angular.module('testApp').controllerProvider.register('testcasescontrlr',
 			},
 		};
 	$scope.getProjectTestCases = function(ts){
-		 $http({
+		 serviceFactory.getData({
 	            url: '/fetchSelectdProjct/'+ts,
 	            method: "GET",
 	            cache:true,
-	        }).success(function (data, status, headers, config) {
-	        	    if(data.status){
-	        	    	$scope.regBody.testcsBoxModel = data.data;
-	        	    	mobCheckFactory.sessionStorer.setItem('newProjectData',JSON.stringify($scope.regBody.testcsBoxModel));
-	        	    	$scope.keepNewPorjctsinSession();
-	        	    }else{
-	        	    	$scope.alert.type = "danger";
-	        	    	$scope.alert.msg = data.message;
-	        	    }
-	            }).error(function (data, status, headers, config) {
-	            	alert("some thing is wrong"+status);
-	            });
+	        },$scope.iffetchSuccess ,$scope.iffail);
 	};
 	(function(){
 		var pathLocation = $location.$$url.split("/");

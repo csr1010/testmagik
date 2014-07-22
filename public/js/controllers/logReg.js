@@ -1,5 +1,5 @@
 angular.module('testApp').controllerProvider.register('logregController', function(
-		$scope,mobCheckFactory,formvalidationFactory, $http,$location)
+		$scope,mobCheckFactory,formvalidationFactory,$location,serviceFactory)
 {
 	 $scope.alert =  { 
 	                	type: '',
@@ -18,31 +18,37 @@ angular.module('testApp').controllerProvider.register('logregController', functi
     		selectedResult:"",
 		}
 	 };
+	 $scope.logSuccess = function(result){
+
+ 	    if(result.status){
+ 	    	sessionStorage.setItem("currentUser",JSON.stringify(result));
+ 	    	$location[result.data.path.method](result.data.path.url);
+ 	    	
+ 	    }else{
+ 	    	$scope.alert.type = "danger";
+ 	    	$scope.alert.msg = result.message;
+ 	    }
+     
+	 };
+	 $scope.logfail = function(errorstat){
+		 	$scope.alert.type = "danger";
+	    	$scope.alert.msg = "oops ! something is wrong tryAgain"+errorstat;
+	 };
 	 $scope.login = function(){
-		   if(!formvalidationFactory.formValidation($scope.logindetails.form).error){
+		 	var errorResponse = formvalidationFactory.formValidation($scope.logindetails.form);
+			if(!errorResponse.error ){
 		   		delete $scope.logindetails.form;
 				var postData = formvalidationFactory.formSerialization($scope.logindetails) ;
-				
-			 
-				 $http({
-			            url: '/signIn',
-			            method: "POST",
-			            data: postData,
-			        }).success(function (result, status, headers, config) {
-			        	    if(result.status){
-			        	    	sessionStorage.setItem("currentUser",JSON.stringify(result));
-			        	    	$location[result.data.path.method](result.data.path.url);
-			        	    }else{
-			        	    	$scope.alert.type = "danger";
-			        	    	$scope.alert.msg = result.message;
-			        	    }
-			            }).error(function (data, status, headers, config) {
-			            	alert("some thing is wrong"+status);
-			            });
+				serviceFactory.getData({
+		            url: '/signIn',
+		            method: "POST",
+		            data: postData,
+		        }, $scope.logSuccess, $scope.logfail);
 			 }
 		   else{
-				 alert("some thing is wrong")
-			 }
+				$scope.alert.type = "danger";
+		    	$scope.alert.msg = errorResponse.description;
+			}
 		 };
 		 $scope.regDetails={
 					info : {
@@ -99,30 +105,35 @@ angular.module('testApp').controllerProvider.register('logregController', functi
 					},
 					form:"",
 				};
-	 
+	 $scope.regSuccess=function(data){
+ 	    if(data.status){
+ 	    	$scope.alert.type = "success";
+ 	    	$scope.alert.msg = data.message;
+ 	    }else{
+ 	    	$scope.alert.type = "danger";
+ 	    	$scope.alert.msg = data.message;
+ 	    }
+     
+	 };
+	 $scope.regfail = function(errorstat){
+		 	$scope.alert.type = "danger";
+	    	$scope.alert.msg = "oops ! something is wrong tryAgain"+errorstat;
+	 };
 	 $scope.registration = function(){
-	   if(!formvalidationFactory.formValidation($scope.regDetails.form).error){
+		 var errorResponse = formvalidationFactory.formValidation($scope.regDetails.form);
+			if(!errorResponse.error ){
 			//var postData = formvalidationFactory.formSerialization($scope.regDetails) ;
 			delete $scope.regDetails.form;
-		 
-			 $http({
-		            url: '/registerAdmin',
-		            method: "POST",
-		            data: $scope.regDetails,
-		        }).success(function (data, status, headers, config) {
-		        	    if(data.status){
-		        	    	$scope.alert.type = "success";
-		        	    	$scope.alert.msg = data.message;
-		        	    }else{
-		        	    	$scope.alert.type = "danger";
-		        	    	$scope.alert.msg = data.message;
-		        	    }
-		            }).error(function (data, status, headers, config) {
-		            	alert("some thing is wrong"+status);
-		            });
+			serviceFactory.getData({
+	            url: '/registerAdmin',
+	            method: "POST",
+	            data: $scope.regDetails,
+	        }, $scope.regSuccess, $scope.regfail);
 		 }
 	   else{
-			 alert("some thing is wrong")
-		 }
+			$scope.alert.type = "danger";
+	    	$scope.alert.msg = errorResponse.description;
+		}
 	 };
+	
 });

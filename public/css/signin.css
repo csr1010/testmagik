@@ -6,30 +6,35 @@
 }
 .alert{
 	z-index: 999999;
-	width: 100%;
+	width: 80%;
 position: fixed;
-bottom: -20px;
+bottom: 50px;
+-webkit-transform: translateX(10%) translateZ(0) ;
+}
+@media all and (min-width: 1230px) {
+.alert{
+	width: 60% !important;
+	-webkit-transform: translateX(17%) translateZ(0);
+}
 }
 .alert-danger {
 font-family: Exo,UbuFont;
 text-align: center;
-border-radius: 0px;
-font-size: 1.45em;
-color: #FAFAFA;
-background-color: #FC5E5E;
+border-radius: 20px;
+font-size: large;
+color: #EF9AF7;
+background-color: rgba(99, 97, 97, 0.94);
 border-color: rgba(0, 0, 0, 0);
-padding:10px;
 }
 
 .alert-success {
-	font-family: Exo,UbuFont;
+font-family: Exo,UbuFont;
 text-align: center;
-border-radius: 0px;
-font-size: 1.45em;
-color: #FAFAFA;
-background-color: #6CAA8C;
+border-radius: 20px;
+font-size: large;
+color: #90F094;
+background-color: rgba(99, 97, 97, 0.94);
 border-color: rgba(0, 0, 0, 0);
-padding:10px;
 }
 
 .form-signin .form-signin-heading,

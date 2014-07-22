@@ -58,6 +58,7 @@
 		       	    	          'js/factory/mobileCheckFactory.js',
 		       	    	          'js/factory/formvalidationFactory.js',
 		       	    	          'js/factory/userarayFactory.js',
+		       	    	          'js/factory/serviceFactory.js',
 		       	    	      ];
 		       	    	      $script(dependencies, function()
 		       	    	      {
@@ -84,6 +85,7 @@
   		       	    	          'js/factory/mobileCheckFactory.js',
   		       	    	          'js/factory/formvalidationFactory.js',
   		       	    	          'js/factory/userarayFactory.js',
+  		       	    	     'js/factory/serviceFactory.js',
   		       	    	      ];
   		       	    	      $script(dependencies, function()
   		       	    	      {
@@ -134,6 +136,7 @@
 		       	    	      'js/factory/mobileCheckFactory.js',
 		       	    	      'js/factory/formvalidationFactory.js',
 		       	    	      'js/factory/filterprovider.js',
+		       	    	   'js/factory/serviceFactory.js',
 	       	    	      ];
 	       	    	      $script(dependencies, function()
 	       	    	      {
@@ -157,6 +160,7 @@
 	       	    	      [
 	       	    	          'js/controllers/Projects.js',
 		       	    	      'js/factory/mobileCheckFactory.js',
+		       	    	   'js/factory/serviceFactory.js',
 	       	    	      ];
 	       	    	      $script(dependencies, function()
 	       	    	      {
@@ -181,7 +185,7 @@
   	       	    	          'js/controllers/testcases.js',
   		       	    	      'js/factory/mobileCheckFactory.js',
   		       	    	      'js/factory/formvalidationFactory.js',
-  		       	    	      'js/factory/currencyFactory.js', 
+  		       	    	 'js/factory/serviceFactory.js',
   	       	    	      ];
   	       	    	      $script(dependencies, function()
   	       	    	      {
@@ -207,6 +211,7 @@
     		       	    	      'js/factory/mobileCheckFactory.js',
     		       	    	      'js/factory/timerFactory.js',
     		       	    	   'js/factory/formvalidationFactory.js',
+    		       	    	 'js/factory/serviceFactory.js',
     	       	    	      ];
     	       	    	      $script(dependencies, function()
     	       	    	      {
@@ -255,7 +260,7 @@
     }).run(function($rootScope,$location){
 		  $rootScope.$on('$stateChangeStart', 
 					function(event, toState, toParams, fromState, fromParams)
-					{ 
+					{
 			  		var currentUser="";
 			  			if($.trim(sessionStorage.getItem("currentUser")) == "") 
 			  				currentUser = null;
@@ -274,6 +279,13 @@
 								 			$rootScope.logoff();
 			       	    	          });
 				    		event.preventDefault();
+				    	}
+				    	else{
+				    		 $(".nonfulfillClass").addClass("inrit");
+				    		 $(".nonfulfillClass").addClass("movenorml");
+				    		 setTimeout(function(){
+						    		$(".nonfulfillClass").removeClass("inrit");
+						    	},202);
 				    	}
 					});  
 	  

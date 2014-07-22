@@ -7,7 +7,7 @@
 		              <span class="headerspan">TEST MAGIK</span>
 		   </abbr>
   </header>
-    <div class="col-xs-12 col-sm-6">
+    <div class="col-xs-12 ">
       <form class="form-signin" name="loginform">
         <div ng-init="logindetails['form']  = loginform"class="form-signin-heading" style='font-size:xx-large;'>Please sign in</div>
 
@@ -63,5 +63,5 @@
    </div>
    
  <div>
-  <alert ng-show="alert.msg != ''" type="alert.type" close="alert.msg='' ">{{alert.msg}}</alert>
+  <alert ng-show="alert.msg != ''" type="alert.type" ng-swipe-right="alert.msg='' "   close="alert.msg='' ">{{alert.msg}}</alert>
 </div>

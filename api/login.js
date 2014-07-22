@@ -84,13 +84,13 @@
 		}, function(err, doc) {
 			 if(doc == null){
 				   	returnMessage.status=false;
-		        	returnMessage.message ="No users found,so not able to fetch records";
+		        	returnMessage.message ="No users found";
 					res.jsonp(returnMessage);
 			   }
 			 else{
 				 	returnMessage.data=doc;
 					returnMessage.status=true;
-		        	returnMessage.message ="Fetched All available Employees from  "+ accountID;
+		        	returnMessage.message ="Users fetched Successfully";
 					res.jsonp(returnMessage);
 			 }
 		});
@@ -102,7 +102,7 @@
 		}, function(err, doc) {
 			 if(doc == null){
 				   	returnMessage.status=false;
-		        	returnMessage.message ="No account found,so not able to fetch currency Codes";
+		        	returnMessage.message ="No account found ";
 					res.jsonp(returnMessage);
 			   }
 			 else{
@@ -145,7 +145,7 @@
 					}
 					else{
 						returnMessage.status=false;
-			        	returnMessage.message ="Dear  " +nempid + ", your credentials seems invalid, or NO Access please contact Admin"
+			        	returnMessage.message ="Dear  " +nempid + ", your credentials seems Invalid, or 'NO Access' please contact Admin"
 						res.jsonp(returnMessage);
 					}
 				}

@@ -1,5 +1,5 @@
 angular.module('testApp').controllerProvider.register('ProjctsListController',
-		function($scope, $http, mobCheckFactory,$location,$window,$rootScope) {
+		function($scope, serviceFactory, mobCheckFactory,$location,$window,$rootScope) {
 			$scope.alert = {
 				type : '',
 				msg : ''
@@ -38,14 +38,30 @@ angular.module('testApp').controllerProvider.register('ProjctsListController',
 					$(".blockr").css({
 						"display":"block"
 					});
+					$(".nonfulfillClass").addClass("blurrr");
+					serviceFactory.movNormal();
 				}
-				/*setTimeout(function(){
-					document.getElementsByClassName('leftnavclass')[0].style.webkitTransform = 'translateX(0px) translateZ(0px)  rotateY(0deg) rotateZ(0deg) ';
-				},200);*/
 				};
 			$scope.regBody = {
 				ProBoxmodel : []
 			};
+			 $scope.ifSuccess = function(data){
+
+	        	    if(data.status){
+	        	    	$scope.alert.type = "success";
+	        	    	$scope.alert.msg = data.message;
+	        	    	$scope.regBody.ProBoxmodel =[];
+	        	    	$scope.regBody.ProBoxmodel  = data.data;
+	        	    	mobCheckFactory.sessionStorer.setItem('currentProjects',JSON.stringify(data.data));
+	        	    }else{
+	        	    	$scope.alert.type = "danger";
+	        	    	$scope.alert.msg = data.message;
+	        	    }
+	            };
+				 $scope.iffail = function(errorstat){
+					 	$scope.alert.type = "danger";
+				    	$scope.alert.msg = "oops ! something is wrong tryAgain"+errorstat;
+				 };
 			(function(){
 				var role = $scope.provideuserSessionData("role");
 				 if(role=="Admin"){
@@ -64,84 +80,15 @@ angular.module('testApp').controllerProvider.register('ProjctsListController',
 					 $scope.regBody.ProBoxmodel = currentProjects;
 				 }
 				 else{
-					 $http({
+					 serviceFactory.getData({
 				            url: '/fetchProjects',
 				            method: "POST",
 				            data:{
 				            	Account:$scope.provideuserSessionData("Account")
 				            }
-				        }).success(function (data, status, headers, config) {
-				        	    if(data.status){
-				        	    	$scope.alert.type = "success";
-				        	    	$scope.alert.msg = data.message;
-				        	    	$scope.regBody.ProBoxmodel =[];
-				        	    	$scope.regBody.ProBoxmodel  = data.data;
-				        	    	mobCheckFactory.sessionStorer.setItem('currentProjects',JSON.stringify(data.data));
-				        	    }else{
-				        	    	$scope.alert.type = "danger";
-				        	    	$scope.alert.msg = data.message;
-				        	    }
-				            }).error(function (data, status, headers, config) {
-				            	alert("some thing is wrong"+status);
-				            });
+				        },$scope.ifSuccess,$scope.iffail);
 				 }
 				 
 				 
 			})();
 		});
-
-
-/* {
-					name:"Everyday",
-					count:38,
-					firstLetter:"E",
-					color:"rgb(160, 221, 104)"
-				}, {
-					name:"Cleartrip",
-					count:23,
-					firstLetter:"C",
-					color:"rgb(160, 221, 104)"
-				},{
-					name:"Exam Magik",
-					count:10,
-					firstLetter:"E",
-					color:"rgb(68, 180, 255)"
-				},
-				 {
-					name:"Password Reset",
-					count:5,
-					firstLetter:"P",
-					color:"rgb(255, 68, 83)"
-				},
-				 {
-					name:"Adv Time sheet",
-					count:5,
-					firstLetter:"A",
-					color:"rgb(45, 195, 165)"
-				},
-				{
-					name:"Vote Magik",
-					count:3,
-					firstLetter:"V",
-					color:"rgb(45, 195, 165)"
-				},{
-					name:"Price Elasticity",
-					count:15,
-					firstLetter:"P",
-					color:"rgb(131, 133, 85)"
-				},{
-					name:"Store Trip Analysis",
-					count:2,
-					firstLetter:"S",
-					color:"rgb(160, 221, 104)"
-				},{
-					name:"Stop Watch",
-					count:6,
-					firstLetter:"S",
-					color:"rgb(255, 68, 83)"
-				}, {
-					name:"Customer Orders",
-					count:23,
-					firstLetter:"C",
-					color:"rgb(255, 68, 83)"
-				},*/

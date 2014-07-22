@@ -1,5 +1,6 @@
 <section class="supermainlayout" >
 <div class=blockr ng-click="closesettings()"></div>
+</div>
 <div class= "leftnavclass" ng-swipe-left="closesettings()">
 <header>
 <div class="dashesLeft">
@@ -10,13 +11,13 @@
 			<abbr title="">
 		             <span class="headerspan">{{navigationMenu.header.title}}</span>
 		   </abbr>
-		   <div class="logoff"><button ng-click ="logoff()"style="font-size: larger;color: #F57676;"><i class="glyphicon glyphicon-off"></i></button></div>
+		   <div class="logoff"><button ng-click ="logoff()"style="font-size: larger;color: #FAFAFA;"><i class="glyphicon glyphicon-off"></i></button></div>
 </header>
-<ul class="nonfilgridsholder" style="overflow-y:auto;" ng-style="{height:regListheight}">
-<a ng-repeat ="i in navigationMenu.body.menu"  ui-sref="{{i.href}}" class="leftsidelist">
+<ul class="nonfilgridsholder inleft" style="overflow-y:auto;" ng-style="{height:regListheight}">
+<a ng-repeat ="i in navigationMenu.body.menu" ng-click="closesettings()" ui-sref="{{i.href}}" class="leftsidelist">
 <span>{{i.title}}</span> 
-<i class="icon icon-chevron-right pull-right"  ></i></a>
+<i style="color:#fff"class="{{i.icon}}"></i></a>
 </ul>
 </div>
-<div class="nonfulfillClass" ng-swipe-right="opensettings()"  ui-view></div>
+<div class="nonfulfillClass inrit" ng-swipe-right="opensettings()"  ui-view></div>
   </section>

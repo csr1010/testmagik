@@ -1,5 +1,5 @@
 angular.module('testApp').controllerProvider.register('masternavcntrlr', 
-		function($scope,$rootScope,$location){
+		function($scope,$rootScope,$location,$timeout){
 	$rootScope.regListheight =  (window.innerHeight - 50)+"px";
 	$(window).resize(function(){
 		$rootScope.$apply(function(){
@@ -16,6 +16,8 @@ angular.module('testApp').controllerProvider.register('masternavcntrlr',
 			$(".blockr").css({
 				"display":"none"
 			});
+			$(".nonfulfillClass").removeClass("blurrr");
+			$(".leftnavclass .nonfilgridsholder").addClass("inleft").removeClass("movenorml");
 		}
 	});
 	$scope.opensettings=function(){
@@ -29,8 +31,11 @@ angular.module('testApp').controllerProvider.register('masternavcntrlr',
 			$(".blockr").css({
 				"display":"block"
 			});
+			$(".nonfulfillClass").addClass("blurrr");
+			$scope.movNormal();
 		}
 		};
+		
 	 if($.trim(sessionStorage.getItem("currentUser")) != "") 
 	 {
 		 var role = JSON.parse(sessionStorage.getItem('currentUser')).data.role.selectedResult
@@ -41,8 +46,8 @@ angular.module('testApp').controllerProvider.register('masternavcntrlr',
 				    	},
 				    	body:{
 							menu:[
-							      {title:"Users" ,href:".registration"},
-							      {title:"Projects" ,href:".ProjectsList"},
+							      {title:"Users" ,href:".registration",icon:"icon icon-user-group"},
+							      {title:"Projects" ,href:".ProjectsList",icon:"icon icon-folder"},
 							      ]	
 				    	}
 				};
@@ -54,7 +59,7 @@ angular.module('testApp').controllerProvider.register('masternavcntrlr',
 				    	},
 				    	body:{
 							menu:[
-							      {title:"Projects" ,href:".ProjectsList"},
+							      {title:"Projects" ,href:".ProjectsList",icon:"icon icon-folder"},
 							      ]	
 				    	}
 				};
@@ -63,7 +68,25 @@ angular.module('testApp').controllerProvider.register('masternavcntrlr',
 	 else{
 		 $rootScope.logoff();
 	 }
-	
+		
+		/*$rootScope.movrit= function(){
+			$(".nonfulfillClass").addClass("moverit");
+			$timeout(function(){
+				
+			},101);
+		};*/
+	 $scope.movNormal= function(){
+		 $(".leftnavclass .nonfilgridsholder").addClass("movenorml");
+	    	$timeout(function(){
+	    		$(".leftnavclass .nonfilgridsholder").removeClass("inleft");
+	    	},302);
+		};
+		$scope.movNFLNormal= function(){
+			 $(".nonfulfillClass").addClass("movenorml");
+		    	$timeout(function(){
+		    		$(".nonfulfillClass").removeClass("inrit");
+		    	},302);
+			};
 	$scope.closesettings=function(){
 		if(window.innerWidth <=1230){
 			$(".leftnavclass").css({
@@ -75,6 +98,8 @@ angular.module('testApp').controllerProvider.register('masternavcntrlr',
 			$(".blockr").css({
 				"display":"none"
 			});
+			$(".nonfulfillClass").removeClass("blurrr");
+			$(".leftnavclass .nonfilgridsholder").addClass("inleft").removeClass("movenorml");
 		}
 		/*setTimeout(function(){
 			document.getElementsByClassName('leftnavclass')[0].style.webkitTransform = 'translateX(-100%) translateZ(0px)  rotateY(-30deg) rotateZ(0deg) ';
