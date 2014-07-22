@@ -156,10 +156,10 @@ border: 1px solid rgb(214, 213, 213);
 	 transition:all ease 300ms;*/
 }
 .movenorml{
-			 -webkit-transform: translateX(0px) translateZ(0px) rotateZ(0deg) !important;
-	 transform: translateX(0px) translateZ(0px)  rotateZ(0deg) !important; 
-	 -moz-transform: translateX(0px) translateZ(0px)  rotateZ(0deg) !important;
-	 -o-transform: translateX(0px) translateZ(0px)  rotateZ(0deg) !important;
+			 -webkit-transform: translateX(0px) translateZ(0px) !important;
+	 transform: translateX(0px) translateZ(0px)  !important; 
+	 -moz-transform: translateX(0px) translateZ(0px)  !important;
+	 -o-transform: translateX(0px) translateZ(0px)  !important;
 }
 .supermainlayout{
 /* -webkit-perspective: 1700;
@@ -227,6 +227,13 @@ background: #FAFAFA;
 background: rgba(80, 77, 77, 0.45);
 }
 @media all and (min-width: 1230px) {
+	.inleft{
+	-webkit-transform: translateX(0px) translateZ(0px) !important;
+	 transform:translateX(0px) translateZ(0px) !important; 
+	 -moz-transform:translateX(0px) translateZ(0px) !important;
+	 -o-transform:translateX(0px) translateZ(0px) !important;
+	 transition:all ease 300ms;
+}
 	.leftnavclass .headerspan {
 	color: #fff ;
 }
@@ -241,6 +248,10 @@ border-bottom: 1px solid rgba(180, 179, 179, 0.18);
 	display:none;
 }
 	.leftnavclass{
+	-webkit-transform: translateX(0px) translateZ(0px) !important;
+	 transform: translateX(0px) translateZ(0px)  !important; 
+	 -moz-transform: translateX(0px) translateZ(0px) !important;
+	 -o-transform: translateX(0px) translateZ(0px) !important ;
 	width:20% !important;
 	background: rgb(97, 97, 97);
 	position:relative;
@@ -617,10 +628,10 @@ left: calc(50% - 25px);
 	 transition:all ease 300ms;
 }
 .inrit{
-	-webkit-transform: translateX(15%) translateZ(0px) rotateZ(2deg) ;
-	 transform: translateX(15%) translateZ(0px) rotateZ(2deg);
-	 -moz-transform: translateX(15%) translateZ(0px) rotateZ(2deg);
-	 -o-transform: translateX(15%) translateZ(0px) rotateZ(2deg);
+	-webkit-transform: translateX(15%) translateZ(0px) ;
+	 transform: translateX(15%) translateZ(0px);
+	 -moz-transform: translateX(15%) translateZ(0px);
+	 -o-transform: translateX(15%) translateZ(0px);
 	 transition:all ease-in-out 200ms;
 }
 .nonfilgridsholder{
