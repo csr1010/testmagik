@@ -281,11 +281,11 @@
 				    		event.preventDefault();
 				    	}
 				    	else{
-				    		 $(".nonfulfillClass").addClass("inrit");
+				    		 /*$(".nonfulfillClass").addClass("inrit");
 				    		 $(".nonfulfillClass").addClass("movenorml");
 				    		 setTimeout(function(){
 						    		$(".nonfulfillClass").removeClass("inrit");
-						    	},202);
+						    	},202);*/
 				    	}
 					});  
 	  

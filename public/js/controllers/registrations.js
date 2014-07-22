@@ -17,7 +17,7 @@ angular.module('testApp').controllerProvider.register('registrationController',
 						"display":"block"
 					});
 					$(".nonfulfillClass").addClass("blurrr");
-					serviceFactory.movNormal();
+					//serviceFactory.movNormal();
 				}
 				};
 				$scope.provideuserSessionData = function(i){

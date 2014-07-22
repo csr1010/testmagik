@@ -17,7 +17,7 @@ angular.module('testApp').controllerProvider.register('masternavcntrlr',
 				"display":"none"
 			});
 			$(".nonfulfillClass").removeClass("blurrr");
-			$(".leftnavclass .nonfilgridsholder").addClass("inleft").removeClass("movenorml");
+			//$(".leftnavclass .nonfilgridsholder").addClass("inleft").removeClass("movenorml");
 		}
 	});
 	$scope.opensettings=function(){
@@ -32,7 +32,6 @@ angular.module('testApp').controllerProvider.register('masternavcntrlr',
 				"display":"block"
 			});
 			$(".nonfulfillClass").addClass("blurrr");
-			$scope.movNormal();
 		}
 		};
 		
@@ -75,7 +74,7 @@ angular.module('testApp').controllerProvider.register('masternavcntrlr',
 				
 			},101);
 		};*/
-	 $scope.movNormal= function(){
+	 /*$scope.movNormal= function(){
 		 $(".leftnavclass .nonfilgridsholder").addClass("movenorml");
 	    	$timeout(function(){
 	    		$(".leftnavclass .nonfilgridsholder").removeClass("inleft");
@@ -86,7 +85,7 @@ angular.module('testApp').controllerProvider.register('masternavcntrlr',
 		    	$timeout(function(){
 		    		$(".nonfulfillClass").removeClass("inrit");
 		    	},302);
-			};
+			};*/
 	$scope.closesettings=function(){
 		if(window.innerWidth <=1230){
 			$(".leftnavclass").css({
@@ -99,7 +98,7 @@ angular.module('testApp').controllerProvider.register('masternavcntrlr',
 				"display":"none"
 			});
 			$(".nonfulfillClass").removeClass("blurrr");
-			$(".leftnavclass .nonfilgridsholder").addClass("inleft").removeClass("movenorml");
+		//	$(".leftnavclass .nonfilgridsholder").addClass("inleft").removeClass("movenorml");
 		}
 		/*setTimeout(function(){
 			document.getElementsByClassName('leftnavclass')[0].style.webkitTransform = 'translateX(-100%) translateZ(0px)  rotateY(-30deg) rotateZ(0deg) ';

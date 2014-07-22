@@ -39,7 +39,7 @@ angular.module('testApp').controllerProvider.register('ProjctsListController',
 						"display":"block"
 					});
 					$(".nonfulfillClass").addClass("blurrr");
-					serviceFactory.movNormal();
+					//serviceFactory.movNormal();
 				}
 				};
 			$scope.regBody = {

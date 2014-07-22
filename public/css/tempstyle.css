@@ -210,7 +210,6 @@ cursor: pointer;
 border: none;
 display: inline-block;
 color: #FCFCFD;
-text-shadow: 0 0 2px white;
 border-bottom: 1px solid rgba(180, 179, 179, 0.79);
 	}
 	button[disabled], html input[disabled] {
@@ -224,7 +223,7 @@ background: #FAFAFA;
 	background: rgba(255, 255, 255, 0.03);
 }
 .leftnavclass{
-background: rgba(80, 77, 77, 0.45);
+background: rgba(46, 44, 44, 0.45);
 }
 @media all and (min-width: 1230px) {
 	.inleft{

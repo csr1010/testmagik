@@ -13,11 +13,11 @@
 		   </abbr>
 		   <div class="logoff"><button ng-click ="logoff()"style="font-size: larger;color: #FAFAFA;"><i class="glyphicon glyphicon-off"></i></button></div>
 </header>
-<ul class="nonfilgridsholder inleft" style="overflow-y:auto;" ng-style="{height:regListheight}">
+<ul class="nonfilgridsholder" style="overflow-y:auto;" ng-style="{height:regListheight}">
 <a ng-repeat ="i in navigationMenu.body.menu" ng-click="closesettings()" ui-sref="{{i.href}}" class="leftsidelist">
 <span>{{i.title}}</span> 
 <i style="color:#fff"class="{{i.icon}}"></i></a>
 </ul>
 </div>
-<div class="nonfulfillClass inrit" ng-swipe-right="opensettings()"  ui-view></div>
+<div class="nonfulfillClass" ng-swipe-right="opensettings()"  ui-view></div>
   </section>
