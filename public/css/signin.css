@@ -5,7 +5,7 @@
   margin: 0 auto;
 }
 .alert{
-	z-index: 999999;
+	z-index: 9999;
 	width: 80%;
 position: fixed;
 bottom: 50px;

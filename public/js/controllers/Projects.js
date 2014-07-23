@@ -38,8 +38,6 @@ angular.module('testApp').controllerProvider.register('ProjctsListController',
 					$(".blockr").css({
 						"display":"block"
 					});
-					$(".nonfulfillClass").addClass("blurrr");
-					//serviceFactory.movNormal();
 				}
 				};
 			$scope.regBody = {

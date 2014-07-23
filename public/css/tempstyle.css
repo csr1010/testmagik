@@ -23,14 +23,14 @@ border: none;
 /* height: 100%;
 width: 100%; */
 }
-.blurrr{
+/* .blurrr{
 	 -webkit-filter: blur(9px);
   -moz-filter: blur(9px);
   -o-filter: blur(9px);
   -ms-filter: blur(9px);
   filter: blur(9px);
 	opacity:0.85;
-}
+} */
 .close {
 font-size: 21px;
 font-weight: bold;

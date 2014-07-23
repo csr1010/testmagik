@@ -16,7 +16,6 @@ angular.module('testApp').controllerProvider.register('masternavcntrlr',
 			$(".blockr").css({
 				"display":"none"
 			});
-			$(".nonfulfillClass").removeClass("blurrr");
 			//$(".leftnavclass .nonfilgridsholder").addClass("inleft").removeClass("movenorml");
 		}
 	});
@@ -31,7 +30,6 @@ angular.module('testApp').controllerProvider.register('masternavcntrlr',
 			$(".blockr").css({
 				"display":"block"
 			});
-			$(".nonfulfillClass").addClass("blurrr");
 		}
 		};
 		
@@ -68,24 +66,6 @@ angular.module('testApp').controllerProvider.register('masternavcntrlr',
 		 $rootScope.logoff();
 	 }
 		
-		/*$rootScope.movrit= function(){
-			$(".nonfulfillClass").addClass("moverit");
-			$timeout(function(){
-				
-			},101);
-		};*/
-	 /*$scope.movNormal= function(){
-		 $(".leftnavclass .nonfilgridsholder").addClass("movenorml");
-	    	$timeout(function(){
-	    		$(".leftnavclass .nonfilgridsholder").removeClass("inleft");
-	    	},302);
-		};
-		$scope.movNFLNormal= function(){
-			 $(".nonfulfillClass").addClass("movenorml");
-		    	$timeout(function(){
-		    		$(".nonfulfillClass").removeClass("inrit");
-		    	},302);
-			};*/
 	$scope.closesettings=function(){
 		if(window.innerWidth <=1230){
 			$(".leftnavclass").css({
@@ -97,12 +77,7 @@ angular.module('testApp').controllerProvider.register('masternavcntrlr',
 			$(".blockr").css({
 				"display":"none"
 			});
-			$(".nonfulfillClass").removeClass("blurrr");
-		//	$(".leftnavclass .nonfilgridsholder").addClass("inleft").removeClass("movenorml");
 		}
-		/*setTimeout(function(){
-			document.getElementsByClassName('leftnavclass')[0].style.webkitTransform = 'translateX(-100%) translateZ(0px)  rotateY(-30deg) rotateZ(0deg) ';
-		},200);*/
 		};
 	$rootScope.logoff = function(){
 		$location.path("/");

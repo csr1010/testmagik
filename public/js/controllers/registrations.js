@@ -16,8 +16,6 @@ angular.module('testApp').controllerProvider.register('registrationController',
 					$(".blockr").css({
 						"display":"block"
 					});
-					$(".nonfulfillClass").addClass("blurrr");
-					//serviceFactory.movNormal();
 				}
 				};
 				$scope.provideuserSessionData = function(i){
