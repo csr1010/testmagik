@@ -148,16 +148,18 @@ border: 1px solid rgb(214, 213, 213);
   		-moz-flex-flow: column wrap;
   		-ms-flex-flow: column wrap;
   		flex-flow: column wrap;
--webkit-transition: -webkit-transform   500ms ease 100ms; /* Changed here */ 
-     -moz-transition: -moz-transform   500ms ease 100ms;
-       -o-transition: -o-transform   500ms ease 100ms;
-          transition: transform   500ms ease 100ms; 
-           -webkit-transform: translateX(3%) translateZ(0px) ;
-	 transform: translateX(3%) translateZ(0px) ; 
-	 -moz-transform: translateX(3%) translateZ(0px) ;
-	 -o-transform: translateX(3%) translateZ(0px) ; 
+-webkit-transition: -webkit-transform 500ms ease , opacity 250ms ease 250ms; /* Changed here */ 
+     -moz-transition: -moz-transform 500ms ease , opacity 250ms ease 250ms;
+       -o-transition: -o-transform 500ms ease , opacity 250ms ease 250ms;
+          transition: transform 500ms ease , opacity 250ms ease 250ms; 
+           -webkit-transform: translateX(6%) translateZ(0px) ;
+	 transform: translateX(6%) translateZ(0px) ; 
+	 -moz-transform: translateX(6%) translateZ(0px) ;
+	 -o-transform: translateX(6%) translateZ(0px) ; 
+	 opacity:0.70;
 }
 .movenorml{
+	
 			 -webkit-transform: translateX(0px) translateZ(0px) !important;
 	 transform: translateX(0px) translateZ(0px)  !important; 
 	 -moz-transform: translateX(0px) translateZ(0px)  !important;

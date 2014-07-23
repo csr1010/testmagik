@@ -284,6 +284,7 @@
 		  $rootScope.$on('$viewContentLoaded', 
 							function(event){ 
 						$(".nonfulfillClass").css({
+							opacity:1,
 							"-webkit-transform":" translateX(0px) translateZ(0px) ",
 							"-moz-transform":" translateX(0px) translateZ(0px) ",
 							"-o-transform":" translateX(0px) translateZ(0px) ",
