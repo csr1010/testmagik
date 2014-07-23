@@ -280,13 +280,15 @@
 			       	    	          });
 				    		event.preventDefault();
 				    	}
-				    	else{
-				    		 /*$(".nonfulfillClass").addClass("inrit");
-				    		 $(".nonfulfillClass").addClass("movenorml");
-				    		 setTimeout(function(){
-						    		$(".nonfulfillClass").removeClass("inrit");
-						    	},202);*/
-				    	}
+					});
+		  $rootScope.$on('$viewContentLoaded', 
+							function(event){ 
+						$(".nonfulfillClass").css({
+							"-webkit-transform":" translateX(0px) translateZ(0px) ",
+							"-moz-transform":" translateX(0px) translateZ(0px) ",
+							"-o-transform":" translateX(0px) translateZ(0px) ",
+							"transform":" translateX(0px) translateZ(0px) ",
+						});
 					});  
 	  
     });

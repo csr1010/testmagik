@@ -13,7 +13,7 @@
   		  <!--  ng-style="{height:regListheight}" style="overflow-y: auto;" -->
   		   <section ng-style="{height:regListheight}"   style="overflow-y: auto;">
 				<ul class="nonfilgridsholder">
-					<a ng-repeat ="i in regBody.ProBoxmodel | orderBy:'firstLetter'"  ng-href="#/home/testcases/{{i.timestamp}}" class="ritsidelist col-xs-12">
+					<a ng-repeat ="i in regBody.ProBoxmodel | orderBy:'firstLetter'"  ng-click="taketoTestcas(i.timestamp)" class="ritsidelist col-xs-12">
 						<label ng-style="{background:i.color}"  class="firstletter">{{i.name.selectedResult.substr(0,1)}}</label>
 						<span  class="rilistdesc">{{i.name.selectedResult}}</span>
 						<label style="font-size: medium;line-height: 50px;"class=" pull-right"  >{{i.count.selectedResult}}</label> 

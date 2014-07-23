@@ -15,6 +15,9 @@ angular.module('testApp').controllerProvider.register('ProjctsListController',
 			$scope.gotoTestCases = function(){
 				$location.path("/home/testcases/new");
 			};
+			$scope.taketoTestcas = function(id){
+				$location.path("/home/testcases/"+id);
+			};
 			$scope.provideuserSessionData = function(i){
 				var wantd =  JSON.parse(sessionStorage.getItem('currentUser')) ?
 						JSON.parse(sessionStorage.getItem('currentUser')).data[i].selectedResult : false

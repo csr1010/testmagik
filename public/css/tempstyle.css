@@ -148,12 +148,14 @@ border: 1px solid rgb(214, 213, 213);
   		-moz-flex-flow: column wrap;
   		-ms-flex-flow: column wrap;
   		flex-flow: column wrap;
-  		transition:all ease 300ms;
-  			/*  -webkit-transform: translateX(10%) translateZ(0px) ;
-	 transform: translateX(10%) translateZ(0px) ; 
-	 -moz-transform: translateX(10%) translateZ(0px) ;
-	 -o-transform: translateX(10%) translateZ(0px) ; 
-	 transition:all ease 300ms;*/
+-webkit-transition: -webkit-transform   500ms ease 100ms; /* Changed here */ 
+     -moz-transition: -moz-transform   500ms ease 100ms;
+       -o-transition: -o-transform   500ms ease 100ms;
+          transition: transform   500ms ease 100ms; 
+           -webkit-transform: translateX(3%) translateZ(0px) ;
+	 transform: translateX(3%) translateZ(0px) ; 
+	 -moz-transform: translateX(3%) translateZ(0px) ;
+	 -o-transform: translateX(3%) translateZ(0px) ; 
 }
 .movenorml{
 			 -webkit-transform: translateX(0px) translateZ(0px) !important;
@@ -223,7 +225,7 @@ background: #FAFAFA;
 	background: rgba(255, 255, 255, 0.03);
 }
 .leftnavclass{
-background: rgba(46, 44, 44, 0.45);
+background: rgba(0, 0, 0, 0.37);
 }
 @media all and (min-width: 1230px) {
 	.inleft{
@@ -1017,8 +1019,7 @@ position: absolute;
 z-index: 999997;
 left: 0;
 top: 0;
-opacity: 0.4;
-background: rgba(255, 255, 255, 0);
+background-image:url("../images/234.jpg"); 
 display:none;
 }
 footer{
