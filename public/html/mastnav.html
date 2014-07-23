@@ -1,5 +1,7 @@
 <section class="supermainlayout" >
-<div class=blockr ng-click="closesettings()"></div>
+<div class=blockr ng-click="closesettings()">
+<div class="inblockr"></div>
+</div>
 </div>
 <div class= "leftnavclass" ng-swipe-left="closesettings()">
 <header>
@@ -15,8 +17,9 @@
 </header>
 <ul class="nonfilgridsholder" style="overflow-y:auto;" ng-style="{height:regListheight}">
 <a ng-repeat ="i in navigationMenu.body.menu" ng-click="closesettings()" ui-sref="{{i.href}}" class="leftsidelist">
+<i style="color:#fff"class="{{i.icon}} iconleftnav"></i>
 <span>{{i.title}}</span> 
-<i style="color:#fff"class="{{i.icon}}"></i></a>
+</a>
 </ul>
 </div>
 <div class="nonfulfillClass" ng-swipe-right="opensettings()"  ui-view></div>
