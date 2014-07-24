@@ -90,10 +90,10 @@ select{
 	 transform: translateX(-100%) translateZ(0px) ; 
 	 -moz-transform: translateX(-100%) translateZ(0px) ;
 	 -o-transform: translateX(-100%) translateZ(0px) ;
-	-webkit-transition: -webkit-transform   0.15s ease; /* Changed here */ 
-     -moz-transition: -moz-transform   0.15s ease;
-       -o-transition: -o-transform   0.15s ease;
-          transition: transform   0.15s ease;
+	-webkit-transition: -webkit-transform 0.70s cubic-bezier(0.11, 0.95, 0.24, 0.92);
+     -moz-transition: -moz-transform 0.70s cubic-bezier(0.11, 0.95, 0.24, 0.92);
+       -o-transition: -o-transform 0.70s cubic-bezier(0.11, 0.95, 0.24, 0.92);
+          transition: transform 0.70s cubic-bezier(0.11, 0.95, 0.24, 0.92);
 }
 /* mobile first approach => by default column wrap  */
 /*by default in column approach width is 100%*/
@@ -1032,16 +1032,22 @@ width: 50px;color: #fff;
 	width: 300px;
 height: 100%;
 background-image: url("../images/234.jpg");
-background-size: 65%;
+background-size: 100%;
 }
 .blockr{
 	width: 100%;
 height: 100%;
 position: absolute;
 z-index: 999997;
-left: 0;
-top: 0;
-display:none;
+top: 0;left:0;
+-webkit-transform: translateX(-100%) translateZ(0px) ;
+	 transform: translateX(-100%) translateZ(0px) ; 
+	 -moz-transform: translateX(-100%) translateZ(0px) ;
+	 -o-transform: translateX(-100%) translateZ(0px) ;
+	-webkit-transition: -webkit-transform 0.70s cubic-bezier(0.11, 0.95, 0.24, 0.92);
+     -moz-transition: -moz-transform 0.70s cubic-bezier(0.11, 0.95, 0.24, 0.92);
+       -o-transition: -o-transform 0.70s cubic-bezier(0.11, 0.95, 0.24, 0.92);
+          transition: transform 0.70s cubic-bezier(0.11, 0.95, 0.24, 0.92);
 }
 footer{
 	/* background:url('../images/ios7-blur.jpg'); */

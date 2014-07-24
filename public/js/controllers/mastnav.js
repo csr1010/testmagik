@@ -14,21 +14,21 @@ angular.module('testApp').controllerProvider.register('masternavcntrlr',
 				"transform":" translateX(0px) translateZ(0px) ",
 			});
 			$(".blockr").css({
-				"display":"none"
+				"-webkit-transform":" translateX(-100%) translateZ(0px) ",
+				"-moz-transform":" translateX(-100%) translateZ(0px) ",
+				"-o-transform":" translateX(-100%) translateZ(0px) ",
+				"transform":" translateX(-100%) translateZ(0px) ",
 			});
 			//$(".leftnavclass .nonfilgridsholder").addClass("inleft").removeClass("movenorml");
 		}
 	});
 	$scope.opensettings=function(){
 		if(window.innerWidth <=1230){
-			$(".leftnavclass").css({
+			$(".leftnavclass,.blockr").css({
 				"-webkit-transform":" translateX(0px) translateZ(0px) ",
 				"-moz-transform":" translateX(0px) translateZ(0px) ",
 				"-o-transform":" translateX(0px) translateZ(0px) ",
 				"transform":" translateX(0px) translateZ(0px) ",
-			});
-			$(".blockr").css({
-				"display":"block"
 			});
 		}
 		};
@@ -68,14 +68,11 @@ angular.module('testApp').controllerProvider.register('masternavcntrlr',
 		
 	$scope.closesettings=function(){
 		if(window.innerWidth <=1230){
-			$(".leftnavclass").css({
+			$(".leftnavclass,.blockr").css({
 				"-webkit-transform":" translateX(-100%) translateZ(0px) ",
 				"-moz-transform":" translateX(-100%) translateZ(0px) ",
 				"-o-transform":" translateX(-100%) translateZ(0px) ",
 				"transform":" translateX(-100%) translateZ(0px) ",
-			});
-			$(".blockr").css({
-				"display":"none"
 			});
 		}
 		};

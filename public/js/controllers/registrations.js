@@ -7,14 +7,11 @@ angular.module('testApp').controllerProvider.register('registrationController',
 			$scope.opensettings=function(){
 				
 				if(window.innerWidth <=1230){
-					$(".leftnavclass").css({
+					$(".leftnavclass,.blockr").css({
 						"-webkit-transform":" translateX(0px) translateY(0px) translateZ(0px) ",
 						"-moz-transform":" translateX(0px) translateY(0px) translateZ(0px) ",
 						"-o-transform":" translateX(0px) translateY(0px) translateZ(0px) ",
 						"transform":" translateX(0px) translateY(0px) translateZ(0px) ",
-					});
-					$(".blockr").css({
-						"display":"block"
 					});
 				}
 				};
