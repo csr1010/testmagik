@@ -1,6 +1,7 @@
 angular.module('testApp').controllerProvider.register('masternavcntrlr', 
 		function($scope,$rootScope,$location,$timeout){
 	$rootScope.regListheight =  (window.innerHeight - 50)+"px";
+	$scope.movNarml = window.innerWidth >1230 ? "movenorml" : "";
 	$(window).resize(function(){
 		$rootScope.$apply(function(){
 			$rootScope.regListheight = (window.innerHeight - 50) + "px";
@@ -14,23 +15,19 @@ angular.module('testApp').controllerProvider.register('masternavcntrlr',
 				"transform":" translateX(0px) translateZ(0px) ",
 			});
 			$(".leftsidelist").addClass("movenorml");
-			$(".blockr").css({
-				"-webkit-transform":" translateX(-100%) translateZ(0px) ",
-				"-moz-transform":" translateX(-100%) translateZ(0px) ",
-				"-o-transform":" translateX(-100%) translateZ(0px) ",
-				"transform":" translateX(-100%) translateZ(0px) ",
-			});
+			$(".blockr").hide();
 			//$(".leftnavclass .nonfilgridsholder").addClass("inleft").removeClass("movenorml");
 		}
 	});
 	$scope.opensettings=function(){
 		if(window.innerWidth <=1230){
-			$(".leftnavclass,.blockr").css({
+			$(".leftnavclass").css({
 				"-webkit-transform":" translateX(0px) translateZ(0px) ",
 				"-moz-transform":" translateX(0px) translateZ(0px) ",
 				"-o-transform":" translateX(0px) translateZ(0px) ",
 				"transform":" translateX(0px) translateZ(0px) ",
 			});
+			$(".blockr").show();
 			$(".leftsidelist").addClass("movenorml");
 		}
 		};
@@ -45,12 +42,6 @@ angular.module('testApp').controllerProvider.register('masternavcntrlr',
 				    	},
 				    	body:{
 							menu:[
-							      {title:"Users" ,href:".registration",icon:"icon icon-user-group"},
-							      {title:"Projects" ,href:".ProjectsList",icon:"icon icon-folder"},
-							      {title:"Users" ,href:".registration",icon:"icon icon-user-group"},
-							      {title:"Projects" ,href:".ProjectsList",icon:"icon icon-folder"},
-							      {title:"Users" ,href:".registration",icon:"icon icon-user-group"},
-							      {title:"Projects" ,href:".ProjectsList",icon:"icon icon-folder"},
 							      {title:"Users" ,href:".registration",icon:"icon icon-user-group"},
 							      {title:"Projects" ,href:".ProjectsList",icon:"icon icon-folder"},
 							      ]	
@@ -76,13 +67,14 @@ angular.module('testApp').controllerProvider.register('masternavcntrlr',
 		
 	$scope.closesettings=function(){
 		if(window.innerWidth <=1230){
-			$(".leftnavclass,.blockr").css({
-				"-webkit-transform":" translateX(-100%) translateZ(0px) ",
-				"-moz-transform":" translateX(-100%) translateZ(0px) ",
-				"-o-transform":" translateX(-100%) translateZ(0px) ",
-				"transform":" translateX(-100%) translateZ(0px) ",
-			});
 			$(".leftsidelist").removeClass("movenorml");
+				$(".leftnavclass").css({
+					"-webkit-transform":" translateX(-100%) translateZ(0px) ",
+					"-moz-transform":" translateX(-100%) translateZ(0px) ",
+					"-o-transform":" translateX(-100%) translateZ(0px) ",
+					"transform":" translateX(-100%) translateZ(0px) ",
+				});
+				$(".blockr").hide();
 		}
 		};
 	$rootScope.logoff = function(){

@@ -7,12 +7,13 @@ angular.module('testApp').controllerProvider.register('registrationController',
 			$scope.opensettings=function(){
 				
 				if(window.innerWidth <=1230){
-					$(".leftnavclass,.blockr").css({
+					$(".leftnavclass").css({
 						"-webkit-transform":" translateX(0px) translateY(0px) translateZ(0px) ",
 						"-moz-transform":" translateX(0px) translateY(0px) translateZ(0px) ",
 						"-o-transform":" translateX(0px) translateY(0px) translateZ(0px) ",
 						"transform":" translateX(0px) translateY(0px) translateZ(0px) ",
 					});
+					$(".blockr").show();
 					$(".leftsidelist").addClass("movenorml");
 					
 				} 

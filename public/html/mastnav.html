@@ -1,6 +1,5 @@
 <section class="supermainlayout" >
 <div class=blockr ng-click="closesettings()">
-<div class="inblockr"></div>
 </div>
 </div>
 <div class= "leftnavclass" ng-swipe-left="closesettings()">
@@ -19,14 +18,14 @@
 <a 
 ng-repeat ="i in navigationMenu.body.menu" 
  style="
- -webkit-transform:translateX(-{{$index*35}}px) translateZ(0px);
- -moz-transform:translateX(-{{$index*35}}px) translateZ(0px);
- -o-transform:translateX(-{{$index*35}}px) translateZ(0px);
- transform:translateX(-{{$index*35}}px) translateZ(0px);
+ -webkit-transform:translateX(-{{($index+1)*50}}px) translateZ(0px);
+ -moz-transform:translateX(-{{($index+1)*50}}px) translateZ(0px);
+ -o-transform:translateX(-{{($index+1)*50}}px) translateZ(0px);
+ transform:translateX(-{{($index+1)*50}}px) translateZ(0px);
  "
-ng-click="closesettings()" ui-sref="{{i.href}}" class="leftsidelist">
+ng-click="closesettings()" ui-sref="{{i.href}}" class="leftsidelist {{movNarml}}"> 
 <i style="color:#fff"class="{{i.icon}} iconleftnav col-xs-2"></i>
-<span class=col-xs-10>{{i.title}}{{$index}}</span> 
+<span class=col-xs-10>{{i.title}}</span> 
 </a>
 </ul>
 </div>
