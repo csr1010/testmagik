@@ -66,11 +66,11 @@ prjreturnMessage.status=false;
 		});
 
   };
-  exports.getrunsbyZera = function(req, res) {
-		 var zertst= req.params.zera.split("_");
+  exports.getrunsbyJIRA = function(req, res) {
+		 var zertst= req.params.JIRA.split("_");
 		 var zr = zertst[0];
 		 var ts = zertst[1];
-		db.runlist.find({'info.zeraNumber':zr,'info.tstCASID':ts},function(err,doc){
+		db.runlist.find({'info.JIRANumber':zr,'info.tstCASID':ts},function(err,doc){
 			if(doc){
 				prjreturnMessage.status=true;
 	        		prjreturnMessage.message ="previous RUNS fetched successfully";
@@ -85,11 +85,11 @@ prjreturnMessage.status=false;
 		});
 
   };
-   exports.getrunsCountbyZera = function(req, res) {
-		 var zertst= req.params.zera.split("_");
+   exports.getrunsCountbyJIRA = function(req, res) {
+		 var zertst= req.params.JIRA.split("_");
 		 var zr = zertst[0];
 		 var ts = zertst[1];
-		db.runlist.count({'info.zeraNumber':zr,'info.tstCASID':ts},function(err,doc){
+		db.runlist.count({'info.JIRANumber':zr,'info.tstCASID':ts},function(err,doc){
 			if(doc){
 			console.log(doc);
 				prjreturnMessage.status=true;

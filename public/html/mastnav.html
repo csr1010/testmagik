@@ -16,9 +16,17 @@
 		   <div class="logoff"><button ng-click ="logoff()"style="font-size: larger;color: #FAFAFA;"><i class="glyphicon glyphicon-off"></i></button></div>
 </header>
 <ul class="nonfilgridsholder" style="overflow-y:auto;" ng-style="{height:regListheight}">
-<a ng-repeat ="i in navigationMenu.body.menu" ng-click="closesettings()" ui-sref="{{i.href}}" class="leftsidelist">
-<i style="color:#fff"class="{{i.icon}} iconleftnav"></i>
-<span>{{i.title}}</span> 
+<a 
+ng-repeat ="i in navigationMenu.body.menu" 
+ style="
+ -webkit-transform:translateX(-{{$index*25}}px) translateZ(0px);
+ -moz-transform:translateX(-{{$index*25}}px) translateZ(0px);
+ -o-transform:translateX(-{{$index*25}}px) translateZ(0px);
+ transform:translateX(-{{$index*25}}px) translateZ(0px);
+ "
+ng-click="closesettings()" ui-sref="{{i.href}}" class="leftsidelist">
+<i style="color:#fff"class="{{i.icon}} iconleftnav col-xs-2"></i>
+<span class=col-xs-10>{{i.title}}{{$index}}</span> 
 </a>
 </ul>
 </div>

@@ -13,6 +13,7 @@ angular.module('testApp').controllerProvider.register('masternavcntrlr',
 				"-o-transform":" translateX(0px) translateZ(0px) ",
 				"transform":" translateX(0px) translateZ(0px) ",
 			});
+			$(".leftsidelist").addClass("movenorml");
 			$(".blockr").css({
 				"-webkit-transform":" translateX(-100%) translateZ(0px) ",
 				"-moz-transform":" translateX(-100%) translateZ(0px) ",
@@ -30,6 +31,7 @@ angular.module('testApp').controllerProvider.register('masternavcntrlr',
 				"-o-transform":" translateX(0px) translateZ(0px) ",
 				"transform":" translateX(0px) translateZ(0px) ",
 			});
+			$(".leftsidelist").addClass("movenorml");
 		}
 		};
 		
@@ -43,6 +45,12 @@ angular.module('testApp').controllerProvider.register('masternavcntrlr',
 				    	},
 				    	body:{
 							menu:[
+							      {title:"Users" ,href:".registration",icon:"icon icon-user-group"},
+							      {title:"Projects" ,href:".ProjectsList",icon:"icon icon-folder"},
+							      {title:"Users" ,href:".registration",icon:"icon icon-user-group"},
+							      {title:"Projects" ,href:".ProjectsList",icon:"icon icon-folder"},
+							      {title:"Users" ,href:".registration",icon:"icon icon-user-group"},
+							      {title:"Projects" ,href:".ProjectsList",icon:"icon icon-folder"},
 							      {title:"Users" ,href:".registration",icon:"icon icon-user-group"},
 							      {title:"Projects" ,href:".ProjectsList",icon:"icon icon-folder"},
 							      ]	
@@ -74,6 +82,7 @@ angular.module('testApp').controllerProvider.register('masternavcntrlr',
 				"-o-transform":" translateX(-100%) translateZ(0px) ",
 				"transform":" translateX(-100%) translateZ(0px) ",
 			});
+			$(".leftsidelist").removeClass("movenorml");
 		}
 		};
 	$rootScope.logoff = function(){

@@ -38,6 +38,7 @@ angular.module('testApp').controllerProvider.register('ProjctsListController',
 						"-o-transform":" translateX(0px) translateZ(0px) ",
 						"transform":" translateX(0px) translateZ(0px) ",
 					});
+					$(".leftsidelist").addClass("movenorml");
 				}
 				};
 			$scope.regBody = {

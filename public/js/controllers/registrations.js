@@ -13,7 +13,9 @@ angular.module('testApp').controllerProvider.register('registrationController',
 						"-o-transform":" translateX(0px) translateY(0px) translateZ(0px) ",
 						"transform":" translateX(0px) translateY(0px) translateZ(0px) ",
 					});
-				}
+					$(".leftsidelist").addClass("movenorml");
+					
+				} 
 				};
 				$scope.provideuserSessionData = function(i){
 					var wantd =  JSON.parse(sessionStorage.getItem('currentUser')) ?

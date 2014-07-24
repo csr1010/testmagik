@@ -4,7 +4,7 @@ angular.module('testApp').controllerProvider.register('RunsListController',
 				type : '',
 				msg : '',
 				endID:"",
-				zera:"",
+				JIRA:"",
 				form:null,
 				moreBut:true,
 				lessbut:false
@@ -12,7 +12,7 @@ angular.module('testApp').controllerProvider.register('RunsListController',
 			(function(){
 				var pathLocation = $location.$$url.split("/");
 				$scope.alert.endID = pathLocation[pathLocation.length-1];
-				$scope.alert.zera = JSON.parse(mobCheckFactory.sessionStorer.getItem('newProjectData')).zeraNumber.selectedResult;
+				$scope.alert.JIRA = JSON.parse(mobCheckFactory.sessionStorer.getItem('newProjectData')).JIRANumber.selectedResult;
 				timerFactory.eventdelgt();
 			})();
 			$rootScope.times="00 : 00 : 00";
@@ -149,10 +149,10 @@ angular.module('testApp').controllerProvider.register('RunsListController',
 			};*/
 			$scope.currentRunCount = 0;
 			$scope.getCountFromDB = function(){
-				var currentZERA = $scope.alert.zera;
+				var currentJIRA = $scope.alert.JIRA;
 				var tstcasId = $scope.alert.endID ;
 				serviceFactory.getData({
-		            url: '/fetchSelectdRUNZERACount/'+currentZERA+"_"+tstcasId+"_"+new Date().getTime(),
+		            url: '/fetchSelectdRUNJIRACount/'+currentJIRA+"_"+tstcasId+"_"+new Date().getTime(),
 		            method: "GET",
 		            cache:false,
 		        },$scope.iffetchSuccess ,$scope.iffail);
@@ -187,9 +187,9 @@ angular.module('testApp').controllerProvider.register('RunsListController',
 					$scope.regBody.oldrunBoxmodel = $scope.regBody.oldrunBoxmodel.concat(dump);
 				}	
 				else{
-					var currentZERA = $scope.alert.zera;
+					var currentJIRA = $scope.alert.JIRA;
 					var tstcasId = $scope.alert.endID ;
-					$scope.getrunbyZERA(currentZERA+"_"+tstcasId+"_"+new Date().getTime());
+					$scope.getrunbyJIRA(currentJIRA+"_"+tstcasId+"_"+new Date().getTime());
 				}
 			};
 			$scope.hideprev=function(){
@@ -197,9 +197,9 @@ angular.module('testApp').controllerProvider.register('RunsListController',
 				$scope.alert.moreBut = true;
 					$scope.regBody.oldrunBoxmodel = [];
 			};
-			$scope.getrunbyZERA = function(ts){
+			$scope.getrunbyJIRA = function(ts){
 				serviceFactory.getData({
-		            url: '/fetchSelectdRUNZERA/'+ts,
+		            url: '/fetchSelectdRUNJIRA/'+ts,
 		            method: "GET",
 		            cache:false,
 		        },$scope.iffetch2Success ,$scope.iffail);
@@ -221,7 +221,7 @@ angular.module('testApp').controllerProvider.register('RunsListController',
 				runBoxmodel : [{
 					timestamp: new Date().getTime() +"RUN"+$scope.provideuserSessionData("empid"),
 					info:{
-						zeraNumber:$scope.alert.zera,
+						JIRANumber:$scope.alert.JIRA,
 						projID:JSON.parse(mobCheckFactory.sessionStorer.getItem('newProjectData')).timestamp, 
 						tstCASID:$scope.alert.endID 
 					},

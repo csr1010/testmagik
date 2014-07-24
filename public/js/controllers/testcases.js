@@ -147,9 +147,9 @@ angular.module('testApp').controllerProvider.register('testcasescontrlr',
 	$scope.regBody = {
 			testcsBoxModel :{ 
 				timestamp:new Date().getTime(),
-				zeraNumber:{
+				JIRANumber:{
 					selectedResult:"",
-					placeHolder:"enter ZERA NO:",
+					placeHolder:"enter JIRA NO:",
 					disabled:false,
 				},
 				Account:{

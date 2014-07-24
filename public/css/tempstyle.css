@@ -77,10 +77,6 @@ select{
 	appearance: none;
 }
 
-.leftnavclass .iconleftnav{
-	text-align: center;
-	display: block;
-}
 .leftnavclass{
 	width:300px;
 	position: absolute;
@@ -90,10 +86,10 @@ select{
 	 transform: translateX(-100%) translateZ(0px) ; 
 	 -moz-transform: translateX(-100%) translateZ(0px) ;
 	 -o-transform: translateX(-100%) translateZ(0px) ;
-	-webkit-transition: -webkit-transform 0.80s cubic-bezier(0.11, 0.95, 0.24, 0.92);
-     -moz-transition: -moz-transform 0.80s cubic-bezier(0.11, 0.95, 0.24, 0.92);
-       -o-transition: -o-transform 0.80s cubic-bezier(0.11, 0.95, 0.24, 0.92);
-          transition: transform 0.80s cubic-bezier(0.11, 0.95, 0.24, 0.92);
+	-webkit-transition: -webkit-transform 0.15s ease;
+     -moz-transition: -moz-transform 0.15s ease;
+       -o-transition: -o-transform 0.15s ease;
+          transition: transform 0.15s ease;
 }
 /* mobile first approach => by default column wrap  */
 /*by default in column approach width is 100%*/
@@ -164,7 +160,6 @@ border: 1px solid rgb(214, 213, 213);
 	 opacity:0.70;
 }
 .movenorml{
-	
 			 -webkit-transform: translateX(0px) translateZ(0px) !important;
 	 transform: translateX(0px) translateZ(0px)  !important; 
 	 -moz-transform: translateX(0px) translateZ(0px)  !important;
@@ -211,7 +206,7 @@ border-bottom: 1px solid rgb(238, 235, 235);
 display: inline-block;
 	}
 	.leftsidelist{
-	width: 50%;
+	width: 100%;
 padding: 2% 4%;
 font-size: 2em;
 /* text-align: center; */
@@ -235,14 +230,6 @@ background: #FAFAFA;
 background: rgba(54, 48, 3, 0.44);
 }
 @media all and (min-width: 1230px) {
-	.leftnavclass .iconleftnav {
-text-align: left !important;
-display: inline-block  !important;
-}
-	.leftsidelist>span{
-width: 85%  !important;
-text-align: left !important;
-}
 	.inleft{
 	-webkit-transform: translateX(0px) translateZ(0px) !important;
 	 transform:translateX(0px) translateZ(0px) !important; 
@@ -967,16 +954,14 @@ height:32px;
 	src:url(../fonts/Averia_Sans_Libre/Ubuntu-Regular.ttf);
 }
 .leftsidelist,.ritsidelist{
-	font-family:'litFont';transition : all linear 0.10s;
+	font-family:'litFont';
+	transition : all 0.80s cubic-bezier(0.11, 0.95, 0.24, 0.92) 0.17s;
 }
 .leftsidelist>span{
-width: 100%;float:right;
-display: inline-block;
 overflow: hidden;
 text-overflow: ellipsis;
 /* word-wrap: break-word; */
 white-space: nowrap;
-text-align:center;
 }
 .topsearchClass{
 	position: absolute;
@@ -1044,10 +1029,10 @@ top: 0;left:0;
 	 transform: translateX(-100%) translateZ(0px) ; 
 	 -moz-transform: translateX(-100%) translateZ(0px) ;
 	 -o-transform: translateX(-100%) translateZ(0px) ;
-	-webkit-transition: -webkit-transform 0.78s cubic-bezier(0.11, 0.95, 0.24, 0.92);
-     -moz-transition: -moz-transform 0.78s cubic-bezier(0.11, 0.95, 0.24, 0.92);
-       -o-transition: -o-transform 0.78s cubic-bezier(0.11, 0.95, 0.24, 0.92);
-          transition: transform 0.78s cubic-bezier(0.11, 0.95, 0.24, 0.92);
+	-webkit-transition: -webkit-transform 0.15s ease;
+     -moz-transition: -moz-transform 0.15s ease;
+       -o-transition: -o-transform 0.15s ease;
+          transition: transform 0.15s ease;
 }
 footer{
 	/* background:url('../images/ios7-blur.jpg'); */
