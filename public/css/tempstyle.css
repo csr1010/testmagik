@@ -86,10 +86,10 @@ select{
 	 transform: translateX(-100%) translateZ(0px) ; 
 	 -moz-transform: translateX(-100%) translateZ(0px) ;
 	 -o-transform: translateX(-100%) translateZ(0px) ;
-	-webkit-transition: -webkit-transform 0.10s ease;
-     -moz-transition: -moz-transform 0.10s ease;
-       -o-transition: -o-transform 0.10s ease;
-          transition: transform 0.10s ease;
+	-webkit-transition: -webkit-transform  250ms  ease;
+     -moz-transition: -moz-transform  250ms  ease;
+       -o-transition: -o-transform  250ms  ease;
+          transition: transform  250ms  ease;
 }
 /* mobile first approach => by default column wrap  */
 /*by default in column approach width is 100%*/
@@ -955,10 +955,10 @@ height:32px;
 }
 .leftsidelist,.ritsidelist{
 	font-family:'litFont';
-	-webkit-transition: -webkit-transform 1s cubic-bezier(0.11, 0.95, 0.24, 0.92) 0.10s;;
-     -moz-transition: -moz-transform 1s cubic-bezier(0.11, 0.95, 0.24, 0.92) 0.10s;;
-       -o-transition: -o-transform 1s cubic-bezier(0.11, 0.95, 0.24, 0.92) 0.10s;;
-          transition: transform 1s cubic-bezier(0.11, 0.95, 0.24, 0.92) 0.10s;;
+	-webkit-transition: -webkit-transform 1s cubic-bezier(0.11, 0.95, 0.24, 0.92)  250ms ;
+     -moz-transition: -moz-transform 1s cubic-bezier(0.11, 0.95, 0.24, 0.92)  250ms ;
+       -o-transition: -o-transform 1s cubic-bezier(0.11, 0.95, 0.24, 0.92)  250ms ;
+          transition: transform 1s cubic-bezier(0.11, 0.95, 0.24, 0.92)  250ms ;
 }
 .leftsidelist>span{
 overflow: hidden;
@@ -1032,10 +1032,10 @@ top: 0;left:0;
 	 transform: translateX(-100%) translateZ(0px) ; 
 	 -moz-transform: translateX(-100%) translateZ(0px) ;
 	 -o-transform: translateX(-100%) translateZ(0px) ;
-	-webkit-transition: -webkit-transform 0.10s ease;
-     -moz-transition: -moz-transform 0.10s ease;
-       -o-transition: -o-transform 0.10s ease;
-          transition: transform 0.10s ease;
+	-webkit-transition: -webkit-transform  250ms  ease;
+     -moz-transition: -moz-transform  250ms  ease;
+       -o-transition: -o-transform  250ms  ease;
+          transition: transform  250ms  ease;
 }
 footer{
 	/* background:url('../images/ios7-blur.jpg'); */
