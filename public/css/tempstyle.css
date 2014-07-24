@@ -1044,10 +1044,10 @@ top: 0;left:0;
 	 transform: translateX(-100%) translateZ(0px) ; 
 	 -moz-transform: translateX(-100%) translateZ(0px) ;
 	 -o-transform: translateX(-100%) translateZ(0px) ;
-	-webkit-transition: -webkit-transform 0.78 cubic-bezier(0.11, 0.95, 0.24, 0.92);
-     -moz-transition: -moz-transform 0.78 cubic-bezier(0.11, 0.95, 0.24, 0.92);
-       -o-transition: -o-transform 0.78 cubic-bezier(0.11, 0.95, 0.24, 0.92);
-          transition: transform 0.78 cubic-bezier(0.11, 0.95, 0.24, 0.92);
+	-webkit-transition: -webkit-transform 0.78s cubic-bezier(0.11, 0.95, 0.24, 0.92);
+     -moz-transition: -moz-transform 0.78s cubic-bezier(0.11, 0.95, 0.24, 0.92);
+       -o-transition: -o-transform 0.78s cubic-bezier(0.11, 0.95, 0.24, 0.92);
+          transition: transform 0.78s cubic-bezier(0.11, 0.95, 0.24, 0.92);
 }
 footer{
 	/* background:url('../images/ios7-blur.jpg'); */
