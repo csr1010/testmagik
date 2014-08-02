@@ -51,10 +51,10 @@ exports.createProject = function(req, res) {
   x.prjid=projid;
   x.isChanged =false;
  db.JIRA.update({prjid:projid},{$set:{ 
-					'x.status.selectedResult' : 'InActive',
-					'x.status.list[1].cls':'danger',
-					'x.status.list[0].cls':'default',
-					'x.status.disabled ': true,
+					'status.selectedResult' : 'InActive',
+					'status.list.1.cls':'danger',
+					'status.list.0.cls':'default',
+					'status.disabled ': true,
  } },{multi:true},function(err,doc){
 	if(doc){
 		db.JIRA.update({'selectedResult':x.selectedResult,prjid:projid},

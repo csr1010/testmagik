@@ -24,10 +24,10 @@ angular.module('testApp').controllerProvider.register('RunsListController',
 				$scope.alert.JIRA = JSON.parse(mobCheckFactory.sessionStorer.getItem('newProjectData')).JIRAS.currentJIRA.selectedResult;
 				$scope.alert.jiraStatus = JSON.parse(mobCheckFactory.sessionStorer.getItem('newProjectData')).JIRAS.currentJIRA.status.selectedResult;
 				if($scope.alert.jiraStatus !="Active"){
-					$scope.regBody.runBoxmodel = [];
+					//$scope.regBody.runBoxmodel = [];
 					$scope.alert.buttns.save = false;
 					$scope.alert.buttns.add = false;
-					$scope.showprev();
+					//$scope.showprev();
 				}
 				else{
 					timerFactory.eventdelgt();

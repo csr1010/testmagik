@@ -19,15 +19,19 @@ angular.module('testApp').provide.service('timerFactory', function($rootScope) {
 		            }, false);
 		        },
 					        start: function ( ) {
+					        	if(myWorker)
 					            myWorker.postMessage("start");
 					        },
 					        stop: function ( ) {
+					        	if(myWorker)
 					            myWorker.postMessage("stop");
 					        },
 					        hold:function(){
+					        	if(myWorker)
 					            myWorker.postMessage("hold");
 					        },
 					        cont:function ( ) {
+					        	if(myWorker)
 					            myWorker.postMessage("cont");
 					        },
 			  
