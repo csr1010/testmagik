@@ -32,13 +32,13 @@ angular.module('testApp').controllerProvider.register('masternavcntrlr',
 		}
 		};
 		
-	 if($.trim(sessionStorage.getItem("currentUser")) != "") 
+	 if($.trim(localStorage.getItem("currentUser")) != "") 
 	 {
-		 var role = JSON.parse(sessionStorage.getItem('currentUser')).data.role.selectedResult
+		 var role = JSON.parse(localStorage.getItem('currentUser')).data.role.selectedResult
 		 if(role=="Admin"){
 			 $scope.navigationMenu = {
 						header:{
-				    		title:"TestsRun",
+				    		title:"TEST MAGIK",
 				    	},
 				    	body:{
 							menu:[
@@ -51,7 +51,7 @@ angular.module('testApp').controllerProvider.register('masternavcntrlr',
 		 else{
 			 $scope.navigationMenu = {
 						header:{
-				    		title:"Test Magik",
+				    		title:"TEST MAGIK",
 				    	},
 				    	body:{
 							menu:[
@@ -79,7 +79,7 @@ angular.module('testApp').controllerProvider.register('masternavcntrlr',
 		};
 	$rootScope.logoff = function(){
 		$location.path("/");
-		sessionStorage.setItem("currentUser",null);
-		sessionStorage.setItem("globalObject",null);
+		localStorage.setItem("currentUser",null);
+		localStorage.setItem("globalObject",null);
 	};
 });

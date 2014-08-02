@@ -3,7 +3,7 @@ var http  = require('http');
 var app      = express();
 GLOBAL.mongojs = require('mongojs');
 //GLOBAL.db = mongojs('mongodb://csr:root@ds063307.mongolab.com:63307/xammagik',['userstests','examslisttests','questionstests','answertests' ]);
-GLOBAL.db = mongojs('mongodb://chetan10:chetan10@ds045099.mongolab.com:45099/testrun',['users','projects','accounts','runlist']);
+GLOBAL.db = mongojs('mongodb://chetan10:chetan10@ds045099.mongolab.com:45099/testrun',['users','projects','accounts','runlist','JIRA','testcases']);
 app.configure(function() {
 	app.use(express.static(__dirname + '/public')); 		// set the static files location /public/img will be /img for users
 	app.use(express.logger('dev')); 						// log every request to the console

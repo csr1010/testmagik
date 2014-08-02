@@ -186,6 +186,7 @@
   		       	    	      'js/factory/mobileCheckFactory.js',
   		       	    	      'js/factory/formvalidationFactory.js',
   		       	    	 'js/factory/serviceFactory.js',
+  		       	    	 'js/factory/modalFactory.js',
   	       	    	      ];
   	       	    	      $script(dependencies, function()
   	       	    	      {
@@ -223,7 +224,31 @@
     	       	    	      return deferred.promise;
     	       	    	  }
     	       	}
-                 });
+                 });/*.state('master.jiralist', {
+                     url: "/RunsList/:id",
+                     templateUrl: 'html/jiralist.html',
+        		       controller: 'jiralistController',
+        		      resolve:{
+      	       	      deps:function($q, $rootScope)
+      	       	    	  {
+      	       	    	      var deferred = $q.defer();
+      	       	    	      var dependencies =
+      	       	    	      [
+      	       	    	          'js/controllers/jiralist.js',
+      		       	    	      'js/factory/formvalidationFactory.js',
+      		       	    	      'js/factory/serviceFactory.js',
+      	       	    	      ];
+      	       	    	      $script(dependencies, function()
+      	       	    	      {
+      	       	    	          $rootScope.$apply(function()
+      	       	    	          {
+      	       	    	              deferred.resolve();
+      	       	    	          });
+      	       	    	      });
+      	       	    	      return deferred.promise;
+      	       	    	  }
+      	       	}
+                   });*/
       /*   .state('master.detail', {
         	 views:{
         		 'detail':{
@@ -262,10 +287,10 @@
 					function(event, toState, toParams, fromState, fromParams)
 					{
 			  		var currentUser="";
-			  			if($.trim(sessionStorage.getItem("currentUser")) == "") 
+			  			if($.trim(localStorage.getItem("currentUser")) == "") 
 			  				currentUser = null;
 			  			else
-			  				currentUser = JSON.parse(sessionStorage.getItem("currentUser"));
+			  				currentUser = JSON.parse(localStorage.getItem("currentUser"));
 				    	if(
 				    	toState.controller != "logregController"
 				    	   &&(	
@@ -274,14 +299,13 @@
 				    	   currentUser.data.empid == ""
 				    		 )
 				    	   ){
-				    		 $rootScope.$apply(function()
-			       	    	          {
-								 			$rootScope.logoff();
-			       	    	          });
-				    		event.preventDefault();
+				    		$location.path("/");
+				    		localStorage.setItem("currentUser",null);
+				    		localStorage.setItem("globalObject",null);
+				    		//event.preventDefault();
 				    	}
 					});
-		  $rootScope.$on('$viewContentLoaded', 
+		/*  $rootScope.$on('$viewContentLoaded', 
 							function(event){ 
 						$(".nonfulfillClass").css({
 							opacity:1,
@@ -290,7 +314,7 @@
 							"-o-transform":" translateX(0px) translateZ(0px) ",
 							"transform":" translateX(0px) translateZ(0px) ",
 						});
-					});  
+					});  */
 	  
     });
 })();

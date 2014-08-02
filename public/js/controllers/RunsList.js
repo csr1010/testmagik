@@ -5,15 +5,34 @@ angular.module('testApp').controllerProvider.register('RunsListController',
 				msg : '',
 				endID:"",
 				JIRA:"",
+				jiraStatus:"",
 				form:null,
 				moreBut:true,
-				lessbut:false
+				lessbut:false,
+				buttns:{
+					strt:true,
+					hold:false,
+					cont:false,
+					end:true,
+					save:true,
+					add:true,
+				}
 			};
 			(function(){
 				var pathLocation = $location.$$url.split("/");
 				$scope.alert.endID = pathLocation[pathLocation.length-1];
-				$scope.alert.JIRA = JSON.parse(mobCheckFactory.sessionStorer.getItem('newProjectData')).JIRANumber.selectedResult;
-				timerFactory.eventdelgt();
+				$scope.alert.JIRA = JSON.parse(mobCheckFactory.sessionStorer.getItem('newProjectData')).JIRAS.currentJIRA.selectedResult;
+				$scope.alert.jiraStatus = JSON.parse(mobCheckFactory.sessionStorer.getItem('newProjectData')).JIRAS.currentJIRA.status.selectedResult;
+				if($scope.alert.jiraStatus !="Active"){
+					$scope.regBody.runBoxmodel = [];
+					$scope.alert.buttns.save = false;
+					$scope.alert.buttns.add = false;
+					$scope.showprev();
+				}
+				else{
+					timerFactory.eventdelgt();
+				}
+				
 			})();
 			$rootScope.times="00 : 00 : 00";
 			$rootScope.regListheight = (window.innerHeight - 50) + "px";
@@ -25,7 +44,7 @@ angular.module('testApp').controllerProvider.register('RunsListController',
 						    }
 				var title="";
 				for(var j = 0 ; j < dump.length ; j++){
-					if(dump[j].info.timestamp == $scope.alert.endID){
+					if(dump[j].info.tscsid == $scope.alert.endID){
 						title = dump[j].selectedResult;
 						break;
 					}
@@ -40,7 +59,7 @@ angular.module('testApp').controllerProvider.register('RunsListController',
 				$scope.stopTime();
 				var ts  = 
 					JSON.parse(mobCheckFactory.sessionStorer.getItem('newProjectData')) ? 
-						JSON.parse(mobCheckFactory.sessionStorer.getItem('newProjectData')).timestamp : "new";
+						JSON.parse(mobCheckFactory.sessionStorer.getItem('newProjectData')).prjid : "new";
 						$location.path("/home/testcases/"+ts);
 			};
 			$scope.runDescs=[ ];
@@ -95,7 +114,7 @@ angular.module('testApp').controllerProvider.register('RunsListController',
 			  };
 						 $scope.iffail = function(errorstat){
 							 	$scope.alert.type = "danger";
-						    	$scope.alert.msg = "oops ! something is wrong tryAgain"+errorstat;
+						    	$scope.alert.msg = "oops ! something is wrong tryAgain"
 						 };
 			$scope.saveruns= function(){
 				var errorResponse = formvalidationFactory.formValidation($scope.alert.form);
@@ -123,7 +142,7 @@ angular.module('testApp').controllerProvider.register('RunsListController',
     	    	if(hasProp){
     	    		var dump = obj[$scope.regBody.runBoxmodel[0].info.tstCASID];
     	    		for(var j = 0 ; j < dump.length ; j++){
-    					if(dump[j].timestamp == $scope.regBody.runBoxmodel[0].timestamp){
+    					if(dump[j].runid == $scope.regBody.runBoxmodel[0].runid){
     						dump.splice(j,1);
     						break;
     					}
@@ -205,8 +224,8 @@ angular.module('testApp').controllerProvider.register('RunsListController',
 		        },$scope.iffetch2Success ,$scope.iffail);
 			};
 			$scope.provideuserSessionData = function(i){
-				var wantd =  JSON.parse(sessionStorage.getItem('currentUser')) ?
-						JSON.parse(sessionStorage.getItem('currentUser')).data[i].selectedResult : false
+				var wantd =  JSON.parse(localStorage.getItem('currentUser')) ?
+						JSON.parse(localStorage.getItem('currentUser')).data[i].selectedResult : false
 						if(!wantd){
 							 $rootScope.$apply(function()
 			       	    	          {
@@ -219,10 +238,10 @@ angular.module('testApp').controllerProvider.register('RunsListController',
 			};
 			$scope.regBody = { 
 				runBoxmodel : [{
-					timestamp: new Date().getTime() +"RUN"+$scope.provideuserSessionData("empid"),
+					runid: new Date().getTime() +"RUN"+$scope.provideuserSessionData("empid"),
 					info:{
 						JIRANumber:$scope.alert.JIRA,
-						projID:JSON.parse(mobCheckFactory.sessionStorer.getItem('newProjectData')).timestamp, 
+						projID:JSON.parse(mobCheckFactory.sessionStorer.getItem('newProjectData')).prjid, 
 						tstCASID:$scope.alert.endID 
 					},
 					runCount: $scope.getCountFromDB(),
@@ -249,7 +268,7 @@ angular.module('testApp').controllerProvider.register('RunsListController',
 					status:{
 						disabled:false,
 						list : [ {txt: "Success",cls:"default"}, {txt: "fail",cls:"danger"}],
-						selectedResult : "Active",
+						selectedResult : "fail",
 					},
 					color:mobCheckFactory.colorCodes[Math.round(Math.random(1)*10)],
 					issueCount:{
@@ -280,9 +299,28 @@ angular.module('testApp').controllerProvider.register('RunsListController',
 			$scope.startTime = function(){
 				$scope.regBody.runBoxmodel[0].times.actTime.strtTSmp = new Date().getTime();
 				timerFactory.start();
+				$scope.alert.buttns.strt = false;
+				$scope.alert.buttns.cont = false;
+				$scope.alert.buttns.hold = true;
 			};
 			$scope.stopTime = function(){
 				timerFactory.stop();
 				 $scope.regBody.runBoxmodel[0].times.actTime.endTSmp = new Date().getTime();
+				 $scope.alert.buttns.strt = true;
+					$scope.alert.buttns.cont = false;
+					$scope.alert.buttns.hold = false;
+			};
+			$scope.holdTime = function(){
+				timerFactory.hold();
+				 $scope.alert.buttns.strt = false;
+					$scope.alert.buttns.cont = true;
+					$scope.alert.buttns.hold = false;
+			};
+			$scope.continueTime = function(){
+				timerFactory.cont();
+				 $scope.alert.buttns.strt = false;
+					$scope.alert.buttns.cont = false;
+					$scope.alert.buttns.hold = true;
+				 
 			};
 		});

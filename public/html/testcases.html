@@ -9,25 +9,26 @@
 		             <span class="headerspan">{{testcsHead.title}}</span>
 		   </abbr>
 		   
-		   <button ng-show="testCasedetails.buttons.done" ng-click ="saveTestcases()"class='center buttonAligner'> 
-		   		<i  style="background: #3EE2C1;"class="glyphicon glyphicon-ok footericon" > </i>
+		   <button tooltip-append-to-body='true' tooltip-placement="left" tooltip="click this once all changes are done"  ng-show="testCasedetails.buttons.done" ng-click ="saveProject()"class='center buttonAligner'> 
+		   		<i  style="background: #3EE2C1;"class="glyphicon  icon icon-checkmark footericon" > </i>
 		   </button>
 		   
-		   <button ng-show="testCasedetails.buttons.edit"ng-click ="editTestcases()"class='center buttonAligner'> 
+		   <button tooltip-append-to-body='true' tooltip-placement="left" tooltip="go to edit mode"  ng-show="testCasedetails.buttons.edit"ng-click ="editTestcases()"class='center buttonAligner'> 
 		   		<i class="glyphicon glyphicon-pencil footericon" > </i>
 		   </button>
 		   
-		   <button ng-show="testCasedetails.buttons.add" ng-click ="addTestCases()"class='center buttonAligner'> 
-		      <i class="glyphicon glyphicon-plus footericon" > </i>
-		   </button>
-		   
   		   </header>
-  		  <!--  ng-style="{height:regListheight}" style="overflow-y: auto;" -->
-  		   <section ng-style="{height:regListheight}" style="overflow-y: auto;">
+  		   <section ng-style="{height:regListheight}" style="overflow-y: auto;background: rgb(236, 236, 236);">
   		    <form name="testcaseForm">
 				<ul class="nonfilgridsholder" ng-init = "testCasedetails['form'] = testcaseForm">
-					<a class="ritsidelist col-xs-12">
-						<span class="col-xs-9" >
+					<div class="runlist ">
+					<div class="col-xs-9">
+					  <span class=" col-xs-12 col-sm-2" style="
+					    display: block;
+					    font-size: medium;
+					    text-align: left;
+					">Project Name</span>
+					  	<div class=" col-xs-12 col-sm-10" >
 							<input class="ipClass " 
 							   type="text" 
 							   	required
@@ -36,63 +37,81 @@
 						        ng-pattern = "/^([\d\w\s/])*$/"
 						        ng-model="regBody.testcsBoxModel.name.selectedResult"
 							 	placeholder="{{regBody.testcsBoxModel.name.placeHolder}}">
-							 
-						 </span>
-						<span class="col-xs-3" style=" font-size: medium;"  >
-						 <input class="ipClass" 
-					       	name="test case count"
-					       	maxlength=3
-							ng-disabled="regBody.testcsBoxModel.count.disabled" 
-					        ng-pattern = "/^[\d]+$/"
-					        ng-model="regBody.testcsBoxModel.count.selectedResult"
-					        placeholder="{{regBody.testcsBoxModel.count.placeHolder}}"
-						 >
-						</span> 
-							<span class="col-xs-3" style="font-size: medium;
-								text-align: center;
-								line-height: 51px;border-top: 1px solid rgb(236, 236, 236);">
-															 JIRA 
-							 </span>
-						<span class="c col-xs-9" >
-							<input class="ipClass "  style="border-top: 1px solid rgb(236, 236, 236);"
-							   type="text" 
-							   	required
-							   	name="JIRA No:"
-							   	ng-disabled="regBody.testcsBoxModel.JIRANumber.disabled || !testCasedetails.projectdetails" 
-						        ng-pattern = "/^[\d]+$/"
-						        ng-model="regBody.testcsBoxModel.JIRANumber.selectedResult"
-							 	placeholder="{{regBody.testcsBoxModel.JIRANumber.placeHolder}}">
-							 
-						 </span>
-					</a>
+						 </div>
+					</div>
+					<div  class="col-xs-3">
+					<div class=" col-xs-12">
+						<span class=" k col-xs-12  " style="
+					    display: block;
+					    font-size: medium;
+					    text-align: center;
+					    font-size: xx-large;
+					">{{regBody.testcsBoxModel.count.selectedResult}}</span>
+						    <span class=" col-xs-12  " style="
+					    display: block;
+					    font-size: small;
+					    text-align: center;
+					">cases</span>
+					</div>
+					</div>
+					</div>
+					<div class="runlist ">
+					<span class=" col-xs-12 col-sm-2" style="
+					    display: block;
+					    font-size: medium;
+					    text-align: left;
+					">JIRA No</span>
+						<div class=" col-xs-8 col-sm-6">
+						 	<select
+							  style="width: 100%;"
+							  ng-init= 'regBody.testcsBoxModel.JIRAS.currentJIRA = regBody.testcsBoxModel.JIRAS.list[0]'
+							  name="JIRA No"
+							  ng-model="regBody.testcsBoxModel.JIRAS.currentJIRA"  
+							  ng-options ="p.selectedResult group by p.readdate for p in regBody.testcsBoxModel.JIRAS.list">
+							  <option value="">-- select JIRA --</option>
+							 </select>
+						</div>
+						<div class="center col-xs-4 col-sm-4" >
+						    <button ng-show = "testCasedetails.buttons.del"style="border: none;color: red;"
+						        ng-show="editZera "ng-click="open()" tooltip-append-to-body='true' tooltip-placement="left" tooltip="add / edit  JIRAs" 
+						 		class="btn btn-default"><i class="icon icon-document-edit"></i>
+						 	</button>
+						</div>
+					</div>
 				</ul> 
-				
-				<ul class="nonfilgridsholder">
+				<div class=" col-xs-12" style="z-index:99;">
+				   <button  tooltip-append-to-body='true' tooltip-placement="left" tooltip="add new testcase" ng-show="testCasedetails.buttons.add" ng-click ="addTestCases()"class='center buttonAligner'> 
+				      <i class="glyphicon icon icon-plus footericon" > </i>
+				   </button>
+				</div>
+				<ul class="runlist" style="font-size: 1em;">
 				<div class="ritsidelist col-xs-12" ng-show="regBody.testcsBoxModel.testCases.length == 0 ">No testcases available</div>
 					<a ng-repeat ="i in regBody.testcsBoxModel.testCases"    class="ritsidelist col-xs-12 ">
 						<label  ng-show = "testCasedetails.readMode" style="text-transform: capitalize;float: left;font-size: larger;"ng-style="{color:i.color}">
 							{{i.selectedResult.substr(0,1)}}
 						</label>
-						<span ng-show = "testCasedetails.readMode" ng-click="navtoRun(i.info.timestamp)" class="rilistdesc">
+						 <span ng-show = "testCasedetails.readMode" ng-click="navtoRun(i.info.tscsid)" class="rilistdesc">
 						 	{{i.selectedResult.substr(1,i.selectedResult.length)}}
 						 </span>
-						 <span ng-show = "!testCasedetails.readMode" class="rilistdesc">
+						 <span ng-show = "!testCasedetails.readMode" class=" col-xs-8">
 						  <input class="ipClass" 
 						    type="text"   
 					       	name="test case name"
 					       	required
-					       	ng-hide="i.disabled"
+					       	ng-hide="i.display"
 							ng-disabled="i.disabled" 
+							ng-change="i.isChanged=true"
 					        ng-pattern = "/^([\d\w\s/])*$/"
 					        ng-model="i.selectedResult"
 					        placeholder="enter test Case"
 						 >
 						 </span>
-						<button ng-click="navtoRun(i.info.timestamp)"ng-show = "testCasedetails.buttons.nav" style="z-index:99999;margin-top:2%;border: none;" class="btn btn-default pull-right">
+						<button ng-click="navtoRun(i.info.timestamp)"ng-show = "testCasedetails.buttons.nav" style="z-index:99999;margin-top:10px;border: none;" class="btn btn-default pull-right">
 						 	<i class="icon icon-chevron-right"   ></i>
 						 </button>
 						
-						<button  ng-show = "testCasedetails.buttons.del" style="z-index:99999;padding:13px;color:#F3CACA;border: 1px solid #F3CACA;" 
+						<button tooltip-append-to-body='true' tooltip-placement="left" tooltip="delete this test case"  
+						ng-show = "testCasedetails.buttons.del" style="z-index:99999;padding:13px;border: none;height: 50px;color: #FF6C6C;" 
 							class="btn btn-default pull-right"
 							ng-click="deletetestCase(i)">
 							<i class="icon icon-cross"></i>

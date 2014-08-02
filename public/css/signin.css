@@ -26,7 +26,15 @@ color: #EF9AF7;
 background-color: rgba(99, 97, 97, 0.94);
 border-color: rgba(0, 0, 0, 0);
 }
-
+.alert-warning {
+font-family: Exo,UbuFont;
+text-align: center;
+border-radius: 20px;
+font-size: large;
+color:#F7E49A;
+background-color: rgba(99, 97, 97, 0.94);
+border-color: rgba(0, 0, 0, 0);
+}
 .alert-success {
 font-family: Exo,UbuFont;
 text-align: center;

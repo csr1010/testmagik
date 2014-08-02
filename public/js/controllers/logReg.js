@@ -21,7 +21,7 @@ angular.module('testApp').controllerProvider.register('logregController', functi
 	 $scope.logSuccess = function(result){
 
  	    if(result.status){
- 	    	sessionStorage.setItem("currentUser",JSON.stringify(result));
+ 	    	localStorage.setItem("currentUser",JSON.stringify(result));
  	    	$location[result.data.path.method](result.data.path.url);
  	    	
  	    }else{
@@ -32,7 +32,7 @@ angular.module('testApp').controllerProvider.register('logregController', functi
 	 };
 	 $scope.logfail = function(errorstat){
 		 	$scope.alert.type = "danger";
-	    	$scope.alert.msg = "oops ! something is wrong tryAgain"+errorstat;
+	    	$scope.alert.msg = "oops ! something is wrong tryAgain"
 	 };
 	 $scope.login = function(){
 		 	var errorResponse = formvalidationFactory.formValidation($scope.logindetails.form);
@@ -117,7 +117,7 @@ angular.module('testApp').controllerProvider.register('logregController', functi
 	 };
 	 $scope.regfail = function(errorstat){
 		 	$scope.alert.type = "danger";
-	    	$scope.alert.msg = "oops ! something is wrong tryAgain"+errorstat;
+	    	$scope.alert.msg = "oops ! something is wrong tryAgain"
 	 };
 	 $scope.registration = function(){
 		 var errorResponse = formvalidationFactory.formValidation($scope.regDetails.form);

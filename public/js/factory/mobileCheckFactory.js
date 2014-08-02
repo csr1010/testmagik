@@ -1,5 +1,5 @@
 angular.module('testApp').provide.service('mobCheckFactory', function() {
-	window.globalObjectStorer=JSON.parse(sessionStorage.getItem('globalObject')) || {};
+	window.globalObjectStorer=JSON.parse(localStorage.getItem('globalObject')) || {};
 	return mobileCheckresult ={
 			 Blocker : {
 					create:function(){
@@ -34,7 +34,7 @@ angular.module('testApp').provide.service('mobCheckFactory', function() {
 				sessionStorer:{
 					setItem:function(key,val){
 						globalObjectStorer[key] = val;
-						sessionStorage.setItem('globalObject',JSON.stringify(globalObjectStorer));
+						localStorage.setItem('globalObject',JSON.stringify(globalObjectStorer));
 					},
 					getItem:function(key){
 						return globalObjectStorer[key] || null;

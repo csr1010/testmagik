@@ -149,7 +149,7 @@ border: 1px solid rgb(214, 213, 213);
   		-moz-flex-flow: column wrap;
   		-ms-flex-flow: column wrap;
   		flex-flow: column wrap;
--webkit-transition: -webkit-transform 500ms ease , opacity 250ms ease 250ms; /* Changed here */ 
+/* -webkit-transition: -webkit-transform 500ms ease , opacity 250ms ease 250ms; Changed here 
      -moz-transition: -moz-transform 500ms ease , opacity 250ms ease 250ms;
        -o-transition: -o-transform 500ms ease , opacity 250ms ease 250ms;
           transition: transform 500ms ease , opacity 250ms ease 250ms; 
@@ -157,7 +157,7 @@ border: 1px solid rgb(214, 213, 213);
 	 transform: translateX(6%) translateZ(0px) ; 
 	 -moz-transform: translateX(6%) translateZ(0px) ;
 	 -o-transform: translateX(6%) translateZ(0px) ; 
-	 opacity:0.70;
+	 opacity:0.70; */
 }
 .movenorml{
 			 -webkit-transform: translateX(0px) translateZ(0px) !important;
@@ -198,12 +198,10 @@ aside{
 	.ritsidelist{
 padding: 0.5% 2%;
 font-size: 2em;
-color: #7A7777;
-/* text-align: center; */
 cursor: pointer;
-border: none;
-border-bottom: 1px solid rgb(238, 235, 235);
-display: inline-block;
+border-top: 1px solid rgb(238, 235, 235);
+display: block;
+float: left;
 	}
 	.leftsidelist{
 	width: 100%;
@@ -443,12 +441,12 @@ border: 1px solid;
 	z-index: -999;
 }
 .footericon{
-height: 45px;
+height: 46px;
 border-radius: 50%;
-padding: 0.99em;
-background: #3FA9FD;
+padding: 1em;
+background: #4AA8FF;
 color: #FFF;
-box-shadow: 0 2px 10px #808080;
+box-shadow: 0 2px 10px #2864A5;
 }
 .footericon:hover{
 	box-shadow: 0 2px 10px #414040;
@@ -524,12 +522,12 @@ border: none !important;
 	background: #D5D5D5;
 } */
 .ng-invalid:not(form) {
-  background: #FDE8E8 !important;border: 1px dotted #F55252;
-   -webkit-animation: wobble 0.20s ease 1;
-     -moz-animation:wobble 0.30s  ease 1;
-      -ms-animation: wobble 0.30s   ease 1;
-       -o-animation: wobble 0.30s   ease 1;
-          animation: wobble 0.30s   ease 1;
+  background: #FDE8E8 !important;
+   -webkit-animation: wobble 0.45s ease 1;
+     -moz-animation:wobble 0.45s  ease 1;
+      -ms-animation: wobble 0.45s   ease 1;
+       -o-animation: wobble 0.45s   ease 1;
+          animation: wobble 0.45s   ease 1;
 }
 textarea {
   resize: none;
@@ -868,8 +866,8 @@ height:32px;
    		background: #FDE8E8;
   }
    25% {
-   		-webkit-transform:scale(0.95) scaleZ(1) scaleZ(1);
-   		transform:scale(0.98);	
+   		-webkit-transform:scale(0.90)   scaleZ(1);
+   		transform:scale(0.90);	
    		background: #fff;
   }
    50% {
@@ -878,8 +876,8 @@ height:32px;
    		background: #FDE8E8;
   }
    75% {
-   		-webkit-transform:scale(0.95) scaleZ(1) scaleZ(1);
-   		transform:scale(0.98);	
+   		-webkit-transform:scale(0.90)   scaleZ(1);
+   		transform:scale(0.90);	
    		background: #fff;
   }
 	 100% {
@@ -985,12 +983,10 @@ transform: translateY(12px) translateX(-70px) translateZ(0px);
 }
 .firstletter{
 	text-transform: capitalize;
-padding: 0 12px;
+width: 40px;
+text-align: center;
 float: left;
-box-shadow: 0 2px 5px gray;
-/* border: 1px solid rgb(240, 240, 240); */
-/* font-family: 'litFont'; */
-color: white;
+color: #ffffff;
 border-radius: 50%;
 font-size: xx-large;
 }
@@ -1031,15 +1027,21 @@ footer{
 	font-family:Exo,UbuFont;
 	background:white; 
 }
-
+.rillistnum{
+	font-size: medium;
+line-height: 44px;
+width: 10%;
+text-align: right;
+display: block;
+}
  .rilistdesc{
 	margin-left: 1%;
 width: 75%;
+float:left;
 height: 50px;
 display: inline-block;
 overflow: hidden;
 text-overflow: ellipsis;
-/* word-wrap: break-word; */
 white-space: nowrap;
 }
 .leftsidelist:hover{

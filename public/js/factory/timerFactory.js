@@ -24,6 +24,12 @@ angular.module('testApp').provide.service('timerFactory', function($rootScope) {
 					        stop: function ( ) {
 					            myWorker.postMessage("stop");
 					        },
+					        hold:function(){
+					            myWorker.postMessage("hold");
+					        },
+					        cont:function ( ) {
+					            myWorker.postMessage("cont");
+					        },
 			  
 	}
 	 });

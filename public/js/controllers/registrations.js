@@ -19,8 +19,8 @@ angular.module('testApp').controllerProvider.register('registrationController',
 				} 
 				};
 				$scope.provideuserSessionData = function(i){
-					var wantd =  JSON.parse(sessionStorage.getItem('currentUser')) ?
-							JSON.parse(sessionStorage.getItem('currentUser')).data[i].selectedResult : false
+					var wantd =  JSON.parse(localStorage.getItem('currentUser')) ?
+							JSON.parse(localStorage.getItem('currentUser')).data[i].selectedResult : false
 							if(!wantd){
 								 $rootScope.$apply(function()
 				       	    	          {
@@ -196,7 +196,7 @@ angular.module('testApp').controllerProvider.register('registrationController',
 	            };
 				 $scope.iffail = function(errorstat){
 					 	$scope.alert.type = "danger";
-				    	$scope.alert.msg = "oops ! something is wrong tryAgain"+errorstat;
+				    	$scope.alert.msg = "oops ! something is wrong tryAgain"
 				 };
 		     $scope.iffetchSuccess = function(data){
 

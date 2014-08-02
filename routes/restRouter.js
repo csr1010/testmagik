@@ -15,6 +15,7 @@ module.exports = function(app) {
 	 app.post('/saveRundetails', projectcreation.createrun);
 	 app.post('/fetchProjects', projectcreation.getALLProjects);
 	app.get('/fetchSelectdProjct/:ts', projectcreation.getfixdprojct);
+	app.get('/fetchtestandjiras/:ts', projectcreation.getTestselectdPorject);
 	app.get('/fetchSelectdRUNJIRA/:JIRA', projectcreation.getrunsbyJIRA);
 	app.get('/fetchSelectdRUNJIRACount/:JIRA', projectcreation.getrunsCountbyJIRA);
 

@@ -9,8 +9,8 @@
   		   <abbr title="Register Employess here remove or transfer , activate or de activate them etc..">
 		              <span class="headerspan">{{regHead.title}}</span>
 		   </abbr>
-		   <button ng-click ="saveruns()"class='center buttonAligner'> <i  style="background: #3EE2C1;"class="glyphicon glyphicon-ok footericon" > </i></button>
-		   <button ng-click ="addRunissue()"class='center buttonAligner'> <i class="glyphicon glyphicon-plus footericon" > </i></button>
+		   <button tooltip-append-to-body='true' tooltip-placement="left" tooltip="save all "  ng-click ="saveruns()"class='center buttonAligner'> <i  style="background: #3EE2C1;"class="glyphicon  icon icon-checkmark footericon" > </i></button>
+		   <button tooltip-append-to-body='true' tooltip-placement="left" tooltip="add issues"  ng-click ="addRunissue()"class='center buttonAligner'> <i class="glyphicon icon icon-plus footericon" > </i></button>
   		   </header>
   		 <!--   <footer>
   		       <div class=" NFlistsubflexes " >
@@ -25,9 +25,9 @@
   		   </footer> -->
   		   <section  ng-style="{height:regListheight}" style="overflow-y: auto;background: rgb(236, 236, 236);">
 				<ul class="nonfilgridsholder" >
-				<div class="runlist col-xs-12" ng-show="regBody.runBoxmodel.length == 0 ">No RUNS available</div>
+				<div class="runlist" ng-show="regBody.runBoxmodel.length == 0 ">No RUNS available</div>
 				<form name="runForm">
-					<div ng-init = "alert['form'] = runForm" ng-repeat ="i in regBody.runBoxmodel | orderBy:'-runCount'"  class=" runlist">
+					<div ng-if="alert.jiraStatus=='Active'" ng-init = "alert['form'] = runForm" ng-repeat ="i in regBody.runBoxmodel | orderBy:'-runCount'"  class=" runlist">
 						<span class="col-xs-2  ">
 						 <!-- <span>RUN </span> -->
 						 <span  ng-style="{background:i.color}" class=runNumbers>{{currentRunCount}}</span></span>
@@ -67,8 +67,10 @@
 						 <span>{{i.times.estTime.selectedResult}}</span>
 						 </div>
 						 <div class="col-xs-4 col-md-4 center">
-						   <button  ng-click="startTime()" class="btn btn-default "><i class="glyphicon glyphicon-play"></i></button>
-	           			   <button  ng-click="stopTime()" class="btn btn-default  "  ><i class="glyphicon glyphicon-stop"></i> </button>
+						   <button ng-show="alert.buttns.strt"tooltip-append-to-body='true' tooltip-placement="left" tooltip="start timer"  ng-click="startTime()" class="btn btn-default "><i class="glyphicon glyphicon-play"></i></button>
+						   <button ng-show="alert.buttns.hold"tooltip-append-to-body='true' tooltip-placement="left" tooltip="hold timer"  ng-click="holdTime()" class="btn btn-default "><i class="glyphicon glyphicon-pause"></i></button>
+						   <button ng-show="alert.buttns.cont"tooltip-append-to-body='true' tooltip-placement="left" tooltip="continue timer"  ng-click="continueTime()" class="btn btn-default "><i class="icon icon-media-play"></i></button>
+	           			   <button  ng-show="alert.buttns.end"tooltip-append-to-body='true' tooltip-placement="left" tooltip="end timer "  ng-click="stopTime()" class="btn btn-default  "  ><i class="glyphicon glyphicon-stop"></i> </button>
 						 </div>
 						 <div class="col-xs-4 col-md-4 center"  style="  font-size: medium;">
 						 <span style="  font-size: medium;">Actual Time</span><br>
@@ -89,7 +91,7 @@
 										<option ng-repeat ="subobj in runDescs" value="{{subobj}}">
 									</select>
 									</datalist>
-						<button    style="margin-top: 10px;z-index:99999;padding:13px;color:#F3CACA;border: 1px solid #F3CACA;" 
+						<button    style="margin-top:10px;z-index:99999;padding:13px;border: none;height: 50px;color: #FF6C6C;" 
 							class="btn btn-default pull-right"
 							ng-click="deleterunIssue(k)">
 							<i class="icon icon-cross"></i>
