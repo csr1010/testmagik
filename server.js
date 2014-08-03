@@ -15,7 +15,7 @@ Date.prototype.getFullDate = function( date ){
 	var dates = ( date.getDate() ) < 10 ? "0"+(date.getDate()) :( date.getDate() );
     return [date.getFullYear(),mnth, dates ].join('/');
 }; 
-var server = http.createServer(app).listen(process.env.PORT ||3000);
+var server = http.createServer(app).listen(process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 3000);
 console.log("App listening on port"+server.address().port);
 
 app.get('/#', function(req, res) {
